@@ -15,6 +15,15 @@ public class BoardTest {
 		throw new RuntimeException();
 	}
 	
+	/**
+	 * Test number 2
+	 * Tests if a quadrant is finished when 3 Xs or Os are in a row. 
+	 */
+	
+	@Test
+	public void testQuadrantComplete(){
+		throw new RuntimeException();
+	}
 	
 	/**
 	 * Test number 3
@@ -33,5 +42,13 @@ public class BoardTest {
 	public void testFinishedQuadrantRejectingClicks(){
 		throw new RuntimeException();
 	}
-	
+
+	/**
+	 * Test number 6
+	 * Tests if the first move is given to a random player.
+	 */
+	@Test
+	public void testFirstMoveRandom(){
+		throw new RuntimeException();
+	}
 }
