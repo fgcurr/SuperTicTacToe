@@ -1,6 +1,6 @@
 import org.junit.*;
 
-public class SuperTicTacToe {
+public class BoardTest {
 	
 	@Before
 	public void setUp() {

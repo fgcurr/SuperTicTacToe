@@ -2,3 +2,7 @@ SuperTicTacToe.class
 /AITest.class
 /TicTacToeTest.class
 /CharacterTest.class
+/Move.class
+/MoveTest.class
+/BoardTest.class
+/BoxTest.class
