@@ -1,6 +1,6 @@
 import org.junit.*;
 
-public class SuperTicTacToe {
+public class BoardTest {
 	
 	@Before
 	public void setUp() {
@@ -42,7 +42,7 @@ public class SuperTicTacToe {
 	public void testFinishedQuadrantRejectingClicks(){
 		throw new RuntimeException();
 	}
-	
+
 	/**
 	 * Test number 6
 	 * Tests if the first move is given to a random player.
@@ -51,14 +51,4 @@ public class SuperTicTacToe {
 	public void testFirstMoveRandom(){
 		throw new RuntimeException();
 	}
-	
-	/**
-	 * Test number 9
-	 * Tests if AI's move is indeed in a valid box.
-	 */
-	@Test
-	public void testAIsNextTurn(){
-		throw new RuntimeException();
-	}
-	
 }
