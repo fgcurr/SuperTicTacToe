@@ -34,13 +34,4 @@ public class SuperTicTacToe {
 		throw new RuntimeException();
 	}
 	
-	/**
-	 * Test number 9
-	 * Tests if AI's move is indeed in a valid box.
-	 */
-	@Test
-	public void testAIsNextTurn(){
-		throw new RuntimeException();
-	}
-	
 }
