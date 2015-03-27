@@ -1,11 +1,17 @@
+import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import boardElements.Quadrant;
+
 public class quadrantIT {
+	
+	Quadrant q;
 	
 	@Before
 	public void setUp() {
-		
+		q = new Quadrant();
 	}
 	
 	/**
@@ -13,7 +19,8 @@ public class quadrantIT {
 	 */
 	@Test
 	public void testTicTacToeDone(){
-		throw new RuntimeException();
+		q.complete = true;
+		assertTrue("TicTacToe not Done", q.isComplete());
 	}
 	
 	/**
