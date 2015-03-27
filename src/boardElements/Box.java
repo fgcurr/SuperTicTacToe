@@ -1,6 +1,6 @@
 package boardElements;
 
-public class Box {
+public class Box extends Entity{
 
 	Character charcter;
 	boolean empty;
