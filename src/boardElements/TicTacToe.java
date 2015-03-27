@@ -1,6 +1,6 @@
 package boardElements;
 
-public class TicTacToe {
+public class TicTacToe extends Entity{
 
 	Box boxes[];
 	

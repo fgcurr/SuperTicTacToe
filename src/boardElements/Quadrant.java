@@ -1,6 +1,6 @@
 package boardElements;
 
-public class Quadrant {
+public class Quadrant extends Entity{
 	
 	int number;
 	TicTacToe tictactoe;

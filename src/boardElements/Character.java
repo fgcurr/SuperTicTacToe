@@ -1,6 +1,6 @@
 package boardElements;
 
-public class Character {
+public class Character extends Entity{
 
 	String type;
 }

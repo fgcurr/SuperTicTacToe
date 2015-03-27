@@ -1,10 +1,17 @@
-import org.junit.*;
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import boardElements.Board;
 
 public class BoardTest {
 	
+	Board board;
+	
 	@Before
 	public void setUp() {
-		
+		board = new Board();
 	}
 	
 	/**
@@ -17,12 +24,13 @@ public class BoardTest {
 	
 	/**
 	 * Test number 2
-	 * Tests if a quadrant is finished when 3 Xs or Os are in a row. 
+	 * Tests if the board is finished when 3 quadrants are in a row. 
 	 */
 	
 	@Test
-	public void testQuadrantComplete(){
-		throw new RuntimeException();
+	public void testBoardComplete(){
+		board.finished = true;
+		assertTrue("Board is not complete", board.isFinished());
 	}
 	
 	/**
@@ -31,16 +39,8 @@ public class BoardTest {
 	 */
 	@Test
 	public void testNumberOfCharacters() {
-		throw new RuntimeException();
-	}
-	
-	/**
-	 * Test number 5
-	 * Tests the rejection of clicks on a quadrant that has been finished
-	 */
-	@Test
-	public void testFinishedQuadrantRejectingClicks(){
-		throw new RuntimeException();
+		board.numOfO = 55;
+		assertTrue("Board is not complete", board.isFinished());
 	}
 
 	/**
