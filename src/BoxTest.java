@@ -1,11 +1,21 @@
+import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import boardElements.Box;
+
 public class BoxTest {
+	
+	Box box;
+	boardElements.Character chara;
 	
 	@Before
 	public void setUp() {
-		
+		box = new Box();
+		chara = new boardElements.Character();
+		chara.type = "X";
+		box.charcter = chara;
 	}
 	
 	/**
@@ -29,6 +39,6 @@ public class BoxTest {
 	 */
 	@Test
 	public void testCharacterPlacedinBox(){
-		throw new RuntimeException();
+		assertTrue("Box is empty",box.charcter != null);
 	}
 }
