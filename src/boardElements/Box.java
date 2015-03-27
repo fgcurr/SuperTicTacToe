@@ -2,7 +2,7 @@ package boardElements;
 
 public class Box extends Entity{
 
-	Character charcter;
+	public boardElements.Character charcter;
 	boolean empty;
 	
 	public boolean isEmpty(){

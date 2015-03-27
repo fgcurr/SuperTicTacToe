@@ -1,12 +1,20 @@
+import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import boardElements.Box;
 
 
 public class BoxIT {
 	
+	Box box;
+	boardElements.Character chara;
+	
 	@Before
 	public void setUp() {
-		
+		chara = new boardElements.Character();
+		box = new Box();
 	}
 	
 	/**
@@ -14,7 +22,9 @@ public class BoxIT {
 	 */
 	@Test
 	public void testIsO(){
-		throw new RuntimeException();
+		chara.type = "O";
+		box.charcter = chara;
+		assertTrue("Character is not an O", box.charcter.type == "O");
 	}
 	
 	/**
@@ -22,13 +32,17 @@ public class BoxIT {
 	 */
 	@Test
 	public void testIsX(){
-		throw new RuntimeException();
+		chara.type = "X";
+		box.charcter = chara;
+		assertTrue("Character is not an X", box.charcter.type == "X");
 	}
 	
 	/**
 	 * Tests if the character in the box is nothing
 	 */
+	@Test
 	public void testIsEmpty(){
-		throw new RuntimeException();
+		box.charcter = chara;
+		assertTrue("Character is not empty", box.charcter.type == null);
 	}
 }
