@@ -1,11 +1,16 @@
+import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class CharacterTest {
+
+	boardElements.Character chara;
 	
 	@Before
 	public void setUp() {
-		
+		chara = new boardElements.Character();
+		chara.type = "X";
 	}
 	
 	/**
@@ -13,7 +18,7 @@ public class CharacterTest {
 	 */
 	@Test
 	public void testLoad() {
-		throw new RuntimeException();
+		assertTrue("Character did not load.", (chara.type != ""));
 	}
 	
 	/**
@@ -21,6 +26,6 @@ public class CharacterTest {
 	 */
 	@Test
 	public void testCharType() {
-		throw new RuntimeException();
+		assertTrue("Character type does not exist.", chara.type != null);
 	}
 }
