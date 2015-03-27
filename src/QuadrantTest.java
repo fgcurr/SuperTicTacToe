@@ -1,10 +1,19 @@
-import org.junit.*;
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import boardElements.Quadrant;
 
 public class QuadrantTest {
 	
+	public Quadrant q;
+	
 	@Before
 	public void setUp() {
-		
+		q = new Quadrant();
+		q.active = true;
+		q.complete = true;
 	}
 	
 	/**
@@ -13,7 +22,7 @@ public class QuadrantTest {
 	 */
 	@Test
 	public void testQuadrantComplete(){
-		throw new RuntimeException();
+		assertTrue("Quadrant not complete",q.isComplete());
 	}
 	
 	/**
@@ -30,6 +39,6 @@ public class QuadrantTest {
 	 */
 	@Test
 	public void testPlayable(){
-		throw new RuntimeException();
+		assertTrue("Not playable", q.isActive());
 	}
 }

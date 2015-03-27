@@ -4,9 +4,9 @@ public class Quadrant extends Entity{
 	
 	int number;
 	TicTacToe tictactoe;
-	boolean complete;
-	boolean outlined;
-	boolean active;
+	public boolean complete;
+	public boolean outlined;
+	public boolean active;
 	
 	public Quadrant(){
 		tictactoe = new TicTacToe();
