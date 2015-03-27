@@ -42,7 +42,7 @@ public class BoardTest {
 		board.numOfO = 55;
 		assertTrue("Board is not complete", board.isFinished());
 	}
-
+	
 	/**
 	 * Test number 6
 	 * Tests if the first move is given to a random player.
