@@ -8,6 +8,10 @@ public class Quadrant {
 	boolean outlined;
 	boolean active;
 	
+	public Quadrant(){
+		tictactoe = new TicTacToe();
+	}
+	
 	public boolean isComplete(){
 		return complete;
 	}
