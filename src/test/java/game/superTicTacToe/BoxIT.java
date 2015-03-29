@@ -1,4 +1,4 @@
-package test;
+package test.java.game.superTicTacToe;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
