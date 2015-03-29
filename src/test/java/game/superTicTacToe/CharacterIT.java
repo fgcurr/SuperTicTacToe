@@ -7,11 +7,11 @@ import org.junit.Test;
 
 public class CharacterIT {
 
-	boardElements.Character chara;
+	main.java.game.superTicTacToe.Character chara;
 	
 	@Before
 	public void setUp() {
-		chara = new boardElements.Character();
+		chara = new main.java.game.superTicTacToe.Character();
 		chara.type ="X";
 	}
 	

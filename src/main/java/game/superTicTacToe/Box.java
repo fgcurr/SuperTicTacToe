@@ -1,8 +1,8 @@
-package boardElements;
+package main.java.game.superTicTacToe;
 
 public class Box extends Entity{
 
-	public boardElements.Character charcter;
+	public main.java.game.superTicTacToe.Character charcter;
 	boolean empty;
 	
 	public boolean isEmpty(){

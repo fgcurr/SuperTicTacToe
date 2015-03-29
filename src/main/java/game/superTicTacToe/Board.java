@@ -1,4 +1,4 @@
-package boardElements;
+package main.java.game.superTicTacToe;
 
 public class Board {
 	public int numOfX;

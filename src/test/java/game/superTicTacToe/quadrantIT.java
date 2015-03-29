@@ -1,10 +1,9 @@
 package test.java.game.superTicTacToe;
 import static org.junit.Assert.*;
+import main.java.game.superTicTacToe.Quadrant;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import boardElements.Quadrant;
 
 public class quadrantIT {
 	
