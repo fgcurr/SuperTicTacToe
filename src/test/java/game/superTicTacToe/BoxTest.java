@@ -1,20 +1,19 @@
 package test.java.game.superTicTacToe;
 import static org.junit.Assert.*;
+import main.java.game.superTicTacToe.Box;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import boardElements.Box;
-
 public class BoxTest {
 	
 	Box box;
-	boardElements.Character chara;
+	main.java.game.superTicTacToe.Character chara;
 	
 	@Before
 	public void setUp() {
 		box = new Box();
-		chara = new boardElements.Character();
+		chara = new main.java.game.superTicTacToe.Character();
 		chara.type = "X";
 		box.charcter = chara;
 	}
