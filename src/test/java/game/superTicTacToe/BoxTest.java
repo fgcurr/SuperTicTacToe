@@ -1,11 +1,21 @@
+package test.java.game.superTicTacToe;
+import static org.junit.Assert.*;
+import main.java.game.superTicTacToe.Box;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class BoxTest {
 	
+	Box box;
+	main.java.game.superTicTacToe.Character chara;
+	
 	@Before
 	public void setUp() {
-		
+		box = new Box();
+		chara = new main.java.game.superTicTacToe.Character();
+		chara.type = "X";
+		box.charcter = chara;
 	}
 	
 	/**
@@ -29,6 +39,6 @@ public class BoxTest {
 	 */
 	@Test
 	public void testCharacterPlacedinBox(){
-		throw new RuntimeException();
+		assertTrue("Box is empty",box.charcter != null);
 	}
 }

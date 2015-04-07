@@ -1,3 +1,4 @@
+package test.java.game.superTicTacToe;
 import org.junit.Before;
 import org.junit.Test;
 
