@@ -1447,6 +1447,7 @@ public class BoardJFrame extends javax.swing.JFrame {
 
     private void jTextField60MouseClicked(java.awt.event.MouseEvent evt) {                                          
         // TODO add your handling code here:
+    	jTextField60.setText(placeChar());
     }                                         
 
     private void jTextField61MouseClicked(java.awt.event.MouseEvent evt) {                                          
