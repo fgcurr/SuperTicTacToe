@@ -17,6 +17,8 @@ import javax.swing.border.Border;
 
 import main.java.game.superTicTacToe.Board;
 import main.java.game.superTicTacToe.Box;
+import main.java.game.superTicTacToe.Quadrant;
+import main.java.game.superTicTacToe.TicTacToe;
 
 
 /*
@@ -33,33 +35,31 @@ public class BoardJFrame extends javax.swing.JFrame {
 	private static final String TITLE = "Super Tic Tac Toe";
 	private static final int WIDTH = 750;
 	private static final int HEIGHT = 750;
-    Board board = new Board();
     private Container content;
     private JLabel title;
     private JButton[][] boxes;
     private JPanel[] panels;
     private BoxHandler[][] boxHandlers;
     
-    String currentChar = "X";
-    
-    public String placeChar() {
-    	if (currentChar.equals("X")){
-    		currentChar = "O";
-    		return "X";
-    	}
-    	else {
-    		currentChar = "X";
-    		return "O";
-    	}
-    }
-    
+    // Class declaration
+    Board board;
+    Quadrant[] boardQuads;
+    TicTacToe[] boardTictactoes;
+    Box[][] boardBoxes;
+     
     public BoardJFrame() {
     	setTitle(TITLE);
     	setSize(WIDTH, HEIGHT);
     	setDefaultCloseOperation(EXIT_ON_CLOSE);
+    	
+    	// Board class initialization
+    	board = new Board();
+    	boardQuads = board.quads;
+    	boardTictactoes = new TicTacToe[9];
+    	boardBoxes = new Box[9][9];
+    	
     	content = getContentPane();
     	content.setBackground(Color.blue.darker());
-    	
     	content.setLayout(new GridLayout(3,3));
     	boxes = new JButton[9][9];
     	panels = new JPanel[9];
@@ -79,6 +79,11 @@ public class BoardJFrame extends javax.swing.JFrame {
     	
     	for (int i =0; i<9; i++) {
     		panels[i] = new JPanel();
+    		
+    		// Board declaration assignments
+    		boardTictactoes[i] = boardQuads[i].tictactoe;
+    		boardBoxes[i] = boardTictactoes[i].boxes;
+    		
     		panels[i].setBorder(border);
     		panels[i].setLayout(new GridLayout(3,3));
     		for (int j =0; j<9; j++) {
@@ -119,9 +124,14 @@ public class BoardJFrame extends javax.swing.JFrame {
 
 class BoxHandler implements ActionListener
 {
+	
+	int quadrant;
+	int box;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		// If board is finished then return
 		if (board.finished)
 			return;
 		
@@ -132,11 +142,28 @@ class BoxHandler implements ActionListener
 		// If button is already played then return
 		if (text.equals("O") || text.equals("X"))
 			return;
+		
+		 
+		
 		pressed.setText("X");
 		
 		// Get parent
 		JPanel parent = (JPanel)pressed.getParent();
+		int qnum = 0;
+		for ( int i =0; i<9; i++) {
+			if (panels[i].equals(parent)) {
+				System.out.print("["+i+",");
+				qnum = i;
+				break;
+			}
+		}
 		
+		for (int i =0; i<9; i++) {
+			if (boxes[qnum][i].equals(pressed)) {
+				System.out.print(i + "] ");
+				break;
+			}
+		}
 	}
 	
 }

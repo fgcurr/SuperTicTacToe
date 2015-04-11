@@ -7,6 +7,9 @@ public class Board {
 	public String finalMessage;
 	public Move allMoves[];
 	public Quadrant quads[];
+//	public TicTacToe tictactoes[]; tic tac toes are initialized in each quadrant..
+//	public Box[][] boxes; boxes are initialized in each tic tac toe
+	public Character character;
 
 	public Board(){
 		numOfX = 0;
@@ -15,6 +18,10 @@ public class Board {
 		finalMessage = "Game Over!";
 		allMoves = new Move[81];
 		quads = new Quadrant[9];
+		for (int i =0; i<9; i++) {
+			quads[i] = new Quadrant();
+		}
+		character = new Character();
 	}
 	
 	public boolean isFinished(){
