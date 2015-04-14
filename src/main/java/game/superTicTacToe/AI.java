@@ -112,23 +112,4 @@ public class AI {
         return rootsChildrenScores.get(best).boxnum;
 		
 	}
-//	public static void main(String args[]) {
-//		TicTacToe tic = new TicTacToe();
-//		tic.boxes[0].set(new Character(Character.AI));
-//		tic.boxes[1].set(new Character(Character.AI));
-////		tic.boxes[2].set(new Character(Character.AI));
-//		tic.boxes[3].set(new Character(Character.HUMAN));
-////		tic.boxes[4].set(new Character(Character.HUMAN));
-//		tic.boxes[5].set(new Character(Character.HUMAN));
-////		tic.boxes[6].set(new Character(Character.AI));
-////		tic.boxes[7].set(new Character(Character.HUMAN));
-//		tic.boxes[8].set(new Character(Character.HUMAN));
-//		System.out.println(tic.isOver());
-//		AI ai = new AI(tic);
-//		ai.callMiniMax(tic, 0, 1);
-//		for (BoxAndScore bas : ai.rootsChildrenScores) {
-//			System.out.println("Box: " + bas.boxnum + " Score: " + bas.score);
-//		}
-//		System.out.println(ai.returnBestMove());
-//	}
 }
