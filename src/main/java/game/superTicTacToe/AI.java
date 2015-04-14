@@ -3,6 +3,16 @@ package main.java.game.superTicTacToe;
 import java.util.ArrayList;
 import java.util.List;
 
+class BoxAndScore {
+	int score;
+	int boxnum;
+	
+	public BoxAndScore(int score, int boxnum) {
+		this.score = score;
+		this.boxnum = boxnum;
+	}
+}
+
 public class AI {
 	/*
 	 * Implementation of AI using MiniMax algorithm
@@ -10,12 +20,17 @@ public class AI {
 	 */
 	
 	private boolean[] turns;
-	private List<Move> moves;
 	private TicTacToe tictactoe;
+	private List<BoxAndScore> rootsChildrenScores;
 	
 	public AI(TicTacToe tictactoe) {
 		this.tictactoe = tictactoe;
-		moves = new ArrayList<Move>();
+		rootsChildrenScores = new ArrayList<>();
+	}
+	
+	public void callMiniMax(/* TicTacToe tictactoe */int depth, int turn) {
+		rootsChildrenScores = new ArrayList<>();
+		minimax(tictactoe, depth, turn);
 	}
 	
 	/**
@@ -23,7 +38,7 @@ public class AI {
 	 * Recursive algorithm with a base condition of returning the score if tictactoe is over
 	 * turn 1 = Computer, turn 2 = Human
 	 */
-	public static int minimax(TicTacToe tictactoe, int turn) {
+	public int minimax(TicTacToe tictactoe, int depth, int turn) {
 		
 		// If tic tac toe is over then return with respective scores
 		if (tictactoe.isLinedUp(new Character(Character.AI))) return +1;
@@ -33,22 +48,29 @@ public class AI {
 		
 		List<Integer> scores = new ArrayList<>();
 		for (Box b : tictactoe.boxes) {
-			if (turn == 1) { // Computer's turn
-				b.set(new Character(Character.AI));
-				int currentscore = minimax(tictactoe, 2);
-				scores.add(currentscore);
+			if (b.isEmpty()) {
+				if (turn == 1) { // Computer's turn
+					b.set(new Character(Character.AI));
+					int currentscore = minimax(tictactoe, depth + 1, 2);
+					scores.add(currentscore);
+					
+					if (depth == 0)
+						rootsChildrenScores.add(new BoxAndScore(currentscore, b.getNum()));
+						
+				}
+				
+				else if (turn == 2) { // Human's turn
+					b.set(new Character(Character.HUMAN));
+					int currentscore = minimax(tictactoe, depth + 1, 1);
+					scores.add(currentscore);
+				}
+				b.unSet(); // Reset this box
 			}
-			
-			else if (turn == 2) { // Human's turn
-				b.set(new Character(Character.HUMAN));
-				int currentscore = minimax(tictactoe, 1);
-				scores.add(currentscore);
-			}
-			
 		}
 		// Return max score if its comp or min score if its human
 		return turn == 1 ? returnMax(scores) : returnMin(scores);
 	}
+	
 	
     public static int returnMax(List<Integer> list) {
         int max = Integer.MIN_VALUE;
@@ -73,44 +95,40 @@ public class AI {
         }
         return list.get(index);
     }
-	
-	/**
-	 * Return boxes which are empty
-	 * @param boxes
-	 * @return List<Box>
-	 */
-	public List<Box> getAvailableBoxes(Box[] boxes) {
-		List<Box> emptyBoxes = new ArrayList<Box>();
-		for (Box b : boxes) {
-			if (b.isEmpty()) {
-				// If box is empty then place char here and simulate all possible scenarios
-				System.out.println("EMPTY");
-				emptyBoxes.add(b);
-			}
-		}
-		return emptyBoxes;
-	}
-	
+		
 	// Can probably incorporate class Move here..
-	
-	public Box returnBestMove() {
-		int MAX = -1000000;
-		int best = -1;
-		return null;
+	public int returnBestMove() {
+		
+		int MAX = -100000;
+        int best = -1;
+		
+		for (int i = 0; i < rootsChildrenScores.size(); ++i) { 
+            if (MAX < rootsChildrenScores.get(i).score) {
+                MAX = rootsChildrenScores.get(i).score;
+                best = i;
+            }
+        }
+
+        return rootsChildrenScores.get(best).boxnum;
+		
 	}
-	
-	public static void main(String args[]) {
-		TicTacToe tic = new TicTacToe();
-		tic.boxes[0].set(new Character(Character.HUMAN));
-		tic.boxes[1].set(new Character(Character.HUMAN));
-		tic.boxes[2].set(new Character(Character.AI));
-		tic.boxes[3].set(new Character(Character.AI));
-		tic.boxes[4].set(new Character(Character.AI));
-		tic.boxes[5].set(new Character(Character.HUMAN));
-		tic.boxes[5].set(new Character(Character.AI));
-		tic.boxes[7].set(new Character(Character.HUMAN));
-		tic.boxes[8].set(new Character(Character.AI));
-		System.out.println(tic.isOver());
-//		minimax(tic, 0);
-	}
+//	public static void main(String args[]) {
+//		TicTacToe tic = new TicTacToe();
+//		tic.boxes[0].set(new Character(Character.AI));
+//		tic.boxes[1].set(new Character(Character.AI));
+////		tic.boxes[2].set(new Character(Character.AI));
+//		tic.boxes[3].set(new Character(Character.HUMAN));
+////		tic.boxes[4].set(new Character(Character.HUMAN));
+//		tic.boxes[5].set(new Character(Character.HUMAN));
+////		tic.boxes[6].set(new Character(Character.AI));
+////		tic.boxes[7].set(new Character(Character.HUMAN));
+//		tic.boxes[8].set(new Character(Character.HUMAN));
+//		System.out.println(tic.isOver());
+//		AI ai = new AI(tic);
+//		ai.callMiniMax(tic, 0, 1);
+//		for (BoxAndScore bas : ai.rootsChildrenScores) {
+//			System.out.println("Box: " + bas.boxnum + " Score: " + bas.score);
+//		}
+//		System.out.println(ai.returnBestMove());
+//	}
 }

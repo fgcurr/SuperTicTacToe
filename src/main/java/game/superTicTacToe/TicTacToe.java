@@ -32,7 +32,7 @@ public class TicTacToe extends Entity{
 	public TicTacToe() {
 		boxes = new Box[9];
 		for (int i=0; i<9; i++) {
-			boxes[i] = new Box();
+			boxes[i] = new Box(i);
 		}
 	}
 	

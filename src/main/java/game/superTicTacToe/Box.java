@@ -4,6 +4,8 @@ public class Box extends Entity{
 
 	// Character enclosed in this box
 	private Character character;
+	// This box's number within a tictactoe 0-8
+	private int num;
 	// is this box empty?
 	boolean empty;
 	
@@ -13,6 +15,17 @@ public class Box extends Entity{
 		character = new Character("N/A");
 	}
 	
+	// Public constructor for setting the box number from tic tac toe
+	public Box(int num) {
+		empty = true;
+		character = new Character("N/A");
+		this.num = num;
+	}
+	
+	public int getNum() {
+		return num;
+	}
+
 	public Character getCharacter() {
 		return character;
 	}
@@ -28,5 +41,13 @@ public class Box extends Entity{
 	public void set(Character character) {
 		empty = false;
 		this.character = character;
+	}
+	
+	/**
+	 * This method unsets a char in this box, mainly for AI
+	 */
+	public void unSet() {
+		empty = true;
+		this.character = new Character("N/A");
 	}
 }
