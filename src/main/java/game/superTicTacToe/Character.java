@@ -8,9 +8,25 @@ package main.java.game.superTicTacToe;
 public class Character extends Entity {
 
 	public String type;
+	public static final String HUMAN = "human";
+	public static final String AI = "AI";
 	
-	public Character() {
-		type = "X";
+	public Character(String humanOrAI) {
+		if (humanOrAI.equals(HUMAN))
+			type = "X";
+		else if (humanOrAI.equals(AI))
+			type = "O";
+		else
+			type = "N/A"; // This is so that when instantiating Character class its not null...
+	}
+	
+	/**
+	 * Returns true if "type" is same
+	 * @return
+	 */
+	public boolean equals(Character character) {
+		if (type.equals(character.type)) return true;
+		else return false;
 	}
 
 	public String getType() {
@@ -20,16 +36,4 @@ public class Character extends Entity {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	// Before each move the board will call this method to get the correct character
-	public String placeChar() {
-		if (type.equals("X")) {
-			type = "O";
-			return "X";
-		} else {
-			type = "X";
-			return "O";
-		}
-	}
-
 }

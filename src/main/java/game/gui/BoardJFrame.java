@@ -4,6 +4,7 @@ package main.java.game.gui;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,14 +13,14 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.Border;
 
+import main.java.game.superTicTacToe.AI;
 import main.java.game.superTicTacToe.Board;
 import main.java.game.superTicTacToe.Box;
 import main.java.game.superTicTacToe.Quadrant;
 import main.java.game.superTicTacToe.TicTacToe;
-
+import main.java.game.superTicTacToe.Character;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -72,6 +73,7 @@ public class BoardJFrame extends javax.swing.JFrame {
     		for (int j=0; j<9; j++) {
     			char ch = (char)('0'+j+1);
     			boxes[i][j] = new JButton(""+ch);
+    			boxes[i][j].setFont(new Font("Helvetica", Font.PLAIN, 25));
     			boxHandlers[i][j] = new BoxHandler();
     			boxes[i][j].addActionListener(boxHandlers[i][j]);
     		}
@@ -94,6 +96,62 @@ public class BoardJFrame extends javax.swing.JFrame {
     	for (int i =0; i<9; i++) {
     		content.add(panels[i]);
     	}
+    }
+    
+    /**
+     * This method handles the graphical elements of AI placing a move, pretty simple.
+     */
+    public void AIMoves(int quadrant, int box) {
+    	// Get the button to be set
+    	JButton aiButton = boxes[quadrant][box];
+    	
+    	// Get button's text
+		String text = aiButton.getText();
+		// If button is already played then return
+		if (text.equals("O") || text.equals("X"))
+			return;
+		
+		// Set that specific board Box to be set!
+		boardBoxes[quadrant][box].set(new Character(Character.AI));
+		
+		// Set the button
+		aiButton.setText("O");
+		aiButton.setForeground(Color.RED);
+		
+		// Get parent (quadrant which was clicked)
+		JPanel parent = (JPanel)aiButton.getParent();
+		
+		// Check if this quadrant is over and disable it accordingly
+		checkAndDisable(parent, boardTictactoes[quadrant]);
+		
+		System.out.println("Response: [" + quadrant + "," + box + "] ");
+		
+		// TODO: Release control to human here somewhere...
+    }
+    
+    public void checkAndDisable(JPanel parent, TicTacToe tictactoe) {
+		if (tictactoe.isOver()) {
+			if (tictactoe.isLinedUp(new Character(Character.AI))) {
+				Border border = BorderFactory.createLineBorder(Color.RED, 2);
+				parent.setBorder(border);
+			}
+			
+			else if (tictactoe.isLinedUp(new Character(Character.HUMAN))) {
+				Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
+				parent.setBorder(border);
+			}
+			
+			else {
+				// Should never be reached in a real super tic tac toe, because tictactoes dont draw!
+				Border border = BorderFactory.createLineBorder(Color.GRAY, 2);
+				parent.setBorder(border);
+			}
+			
+			for (Component b : parent.getComponents()) {
+				JButton cb = (JButton) b;
+				cb.setEnabled(false);
+			}
+		}
     }
 
     /**
@@ -137,34 +195,49 @@ class BoxHandler implements ActionListener
 		
 		// Get button pressed
 		JButton pressed = (JButton)(e.getSource());
-		// Get its text
+		
+		// Get buttons text
 		String text = pressed.getText();
 		// If button is already played then return
 		if (text.equals("O") || text.equals("X"))
 			return;
 		
-		 
-		
-		pressed.setText("X");
-		
-		// Get parent
+		// Get parent (quadrant which was clicked)
 		JPanel parent = (JPanel)pressed.getParent();
-		int qnum = 0;
 		for ( int i =0; i<9; i++) {
 			if (panels[i].equals(parent)) {
 				System.out.print("["+i+",");
-				qnum = i;
+				quadrant = i;
 				break;
 			}
 		}
 		
+		// Get box within the quadrant which was clicked
 		for (int i =0; i<9; i++) {
-			if (boxes[qnum][i].equals(pressed)) {
+			if (boxes[quadrant][i].equals(pressed)) {
 				System.out.print(i + "] ");
+				box = i;
 				break;
 			}
 		}
+		
+		// Set that specific board Box class to be set!
+		boardBoxes[quadrant][box].set(new Character(Character.HUMAN));
+		
+		// Just for purposes of making human "X"
+		pressed.setText("X");
+		pressed.setForeground(Color.BLUE);
+		
+		// Check if this quadrant is over and disable it accordingly
+		checkAndDisable(parent, boardTictactoes[quadrant]);
+		
+		if (!boardTictactoes[quadrant].isOver()) {
+			// Call the AI and ask him to make move:
+			AI ai = new AI(boardTictactoes[quadrant]);
+			ai.callMiniMax(0, 1);
+			AIMoves(quadrant, ai.returnBestMove());
+		}
+		
 	}
-	
 }
 }
