@@ -21,7 +21,7 @@ public class Board {
 		for (int i =0; i<9; i++) {
 			quads[i] = new Quadrant();
 		}
-		character = new Character();
+//		character = new Character();
 	}
 	
 	public boolean isFinished(){

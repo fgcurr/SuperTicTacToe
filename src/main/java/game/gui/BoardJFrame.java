@@ -17,6 +17,7 @@ import javax.swing.border.Border;
 
 import main.java.game.superTicTacToe.Board;
 import main.java.game.superTicTacToe.Box;
+import main.java.game.superTicTacToe.Character;
 import main.java.game.superTicTacToe.Quadrant;
 import main.java.game.superTicTacToe.TicTacToe;
 
@@ -137,34 +138,37 @@ class BoxHandler implements ActionListener
 		
 		// Get button pressed
 		JButton pressed = (JButton)(e.getSource());
-		// Get its text
+		
+		// Get buttons text
 		String text = pressed.getText();
 		// If button is already played then return
 		if (text.equals("O") || text.equals("X"))
 			return;
 		
-		 
-		
-		pressed.setText("X");
-		
-		// Get parent
+		// Get parent (quadrant which was clicked)
 		JPanel parent = (JPanel)pressed.getParent();
-		int qnum = 0;
 		for ( int i =0; i<9; i++) {
 			if (panels[i].equals(parent)) {
 				System.out.print("["+i+",");
-				qnum = i;
+				quadrant = i;
 				break;
 			}
 		}
 		
+		// Get box within the quadrant which was clicked
 		for (int i =0; i<9; i++) {
-			if (boxes[qnum][i].equals(pressed)) {
+			if (boxes[quadrant][i].equals(pressed)) {
 				System.out.print(i + "] ");
+				box = i;
 				break;
 			}
 		}
+		
+		// Set that specific board Box class to be set - Long STATEMENG cuz we cant use new Character(Character.HUMAN) whoops!
+		boardBoxes[quadrant][box].set(new Character(Character.HUMAN));
+		
+		// Just for purposes of making human "X"
+		pressed.setText("X");
 	}
-	
 }
 }
