@@ -93,6 +93,8 @@ public class BoardJFrame extends javax.swing.JFrame {
     		}
     	}
     	
+    	board.setQuadrants(panels);
+    	
     	for (int i =0; i<9; i++) {
     		content.add(panels[i]);
     	}
@@ -122,35 +124,29 @@ public class BoardJFrame extends javax.swing.JFrame {
 		JPanel parent = (JPanel)aiButton.getParent();
 		
 		// Check if this quadrant is over and disable it accordingly
-		checkAndDisable(parent, boardTictactoes[quadrant]);
+		checkAndDisable(boardQuads[quadrant], boardTictactoes[quadrant]);
 		
 		System.out.println("Response: [" + quadrant + "," + box + "] ");
 		
 		// TODO: Release control to human here somewhere...
     }
     
-    public void checkAndDisable(JPanel parent, TicTacToe tictactoe) {
+    public void checkAndDisable(Quadrant quadrant, TicTacToe tictactoe) {
 		if (tictactoe.isOver()) {
 			if (tictactoe.isLinedUp(new Character(Character.AI))) {
-				Border border = BorderFactory.createLineBorder(Color.RED, 2);
-				parent.setBorder(border);
+				quadrant.setOutline(Color.RED);
 			}
 			
 			else if (tictactoe.isLinedUp(new Character(Character.HUMAN))) {
-				Border border = BorderFactory.createLineBorder(Color.BLUE, 2);
-				parent.setBorder(border);
+				quadrant.setOutline(Color.BLUE);
 			}
 			
 			else {
 				// Should never be reached in a real super tic tac toe, because tictactoes dont draw!
-				Border border = BorderFactory.createLineBorder(Color.GRAY, 2);
-				parent.setBorder(border);
+				quadrant.setOutline(Color.GRAY);
 			}
 			
-			for (Component b : parent.getComponents()) {
-				JButton cb = (JButton) b;
-				cb.setEnabled(false);
-			}
+			quadrant.disable();
 		}
     }
 
@@ -204,13 +200,14 @@ class BoxHandler implements ActionListener
 		
 		// Get parent (quadrant which was clicked)
 		JPanel parent = (JPanel)pressed.getParent();
-		for ( int i =0; i<9; i++) {
-			if (panels[i].equals(parent)) {
-				System.out.print("["+i+",");
-				quadrant = i;
-				break;
-			}
-		}
+		quadrant = board.findQuadrant(parent);
+//		for ( int i =0; i<9; i++) {
+//			if (panels[i].equals(parent)) {
+//				System.out.print("["+i+",");
+//				quadrant = i;
+//				break;
+//			}
+//		}
 		
 		// Get box within the quadrant which was clicked
 		for (int i =0; i<9; i++) {
@@ -229,7 +226,8 @@ class BoxHandler implements ActionListener
 		pressed.setForeground(Color.BLUE);
 		
 		// Check if this quadrant is over and disable it accordingly
-		checkAndDisable(parent, boardTictactoes[quadrant]);
+		checkAndDisable(boardQuads[quadrant], boardTictactoes[quadrant]);
+//		checkAndDisable(boardQuads[quadrant], boardTictactoes[quadrant]);
 		
 		if (!boardTictactoes[quadrant].isOver()) {
 			// Call the AI and ask him to make move:
