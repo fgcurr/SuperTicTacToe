@@ -201,13 +201,6 @@ class BoxHandler implements ActionListener
 		// Get parent (quadrant which was clicked)
 		JPanel parent = (JPanel)pressed.getParent();
 		quadrant = board.findQuadrant(parent);
-//		for ( int i =0; i<9; i++) {
-//			if (panels[i].equals(parent)) {
-//				System.out.print("["+i+",");
-//				quadrant = i;
-//				break;
-//			}
-//		}
 		
 		// Get box within the quadrant which was clicked
 		for (int i =0; i<9; i++) {
@@ -227,7 +220,9 @@ class BoxHandler implements ActionListener
 		
 		// Check if this quadrant is over and disable it accordingly
 		checkAndDisable(boardQuads[quadrant], boardTictactoes[quadrant]);
-//		checkAndDisable(boardQuads[quadrant], boardTictactoes[quadrant]);
+		
+		//TODO
+//		boardTictactoes[quadrant]
 		
 		if (!boardTictactoes[quadrant].isOver()) {
 			// Call the AI and ask him to make move:
