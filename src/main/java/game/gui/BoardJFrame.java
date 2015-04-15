@@ -2,12 +2,12 @@ package main.java.game.gui;
 
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -18,9 +18,9 @@ import javax.swing.border.Border;
 import main.java.game.superTicTacToe.AI;
 import main.java.game.superTicTacToe.Board;
 import main.java.game.superTicTacToe.Box;
+import main.java.game.superTicTacToe.Character;
 import main.java.game.superTicTacToe.Quadrant;
 import main.java.game.superTicTacToe.TicTacToe;
-import main.java.game.superTicTacToe.Character;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -221,14 +221,18 @@ class BoxHandler implements ActionListener
 		// Check if this quadrant is over and disable it accordingly
 		checkAndDisable(boardQuads[quadrant], boardTictactoes[quadrant]);
 		
-		//TODO
-//		boardTictactoes[quadrant]
+		Random rndm = new Random();
+
+		//TODO: If game is finished keeps on looping. Must stop it
+		while(boardTictactoes[box].isOver()){
+			box = rndm.nextInt(9);
+		}
 		
-		if (!boardTictactoes[quadrant].isOver()) {
+		if (!boardTictactoes[box].isOver()) {
 			// Call the AI and ask him to make move:
-			AI ai = new AI(boardTictactoes[quadrant]);
+			AI ai = new AI(boardTictactoes[box]);
 			ai.callMiniMax(0, 1);
-			AIMoves(quadrant, ai.returnBestMove());
+			AIMoves(box, ai.returnBestMove());
 		}
 		
 	}
