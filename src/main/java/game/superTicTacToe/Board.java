@@ -1,5 +1,7 @@
 package main.java.game.superTicTacToe;
 
+import javax.swing.JPanel;
+
 public class Board {
 	public int numOfX;
 	public int numOfO;
@@ -7,6 +9,7 @@ public class Board {
 	public String finalMessage;
 	public Move allMoves[];
 	public Quadrant quads[];
+//	public JPanel panels[];
 //	public TicTacToe tictactoes[]; tic tac toes are initialized in each quadrant..
 //	public Box[][] boxes; boxes are initialized in each tic tac toe
 	public Character character;
@@ -22,6 +25,27 @@ public class Board {
 			quads[i] = new Quadrant();
 		}
 //		character = new Character();
+	}
+	
+	public void setQuadrants(JPanel panels[]){
+		for(int i = 0; i < quads.length; i++){
+			quads[i].setQuadrant(panels[i]);
+		}
+//		this.panels = panels;
+	}
+	
+	public int findQuadrant(JPanel parent){
+		int quadrant = 0;
+		
+		for ( int i =0; i<9; i++) {
+			if (quads[i].getQuadrant().equals(parent)) {
+//			if (panels[i].equals(parent)) {
+				System.out.print("["+i+",");
+				quadrant = i;
+				break;
+			}
+		}
+		return quadrant;
 	}
 	
 	public boolean isFinished(){
