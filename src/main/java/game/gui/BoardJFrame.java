@@ -43,10 +43,10 @@ public class BoardJFrame extends javax.swing.JFrame {
     private BoxHandler[][] boxHandlers;
     
     // Class declaration
-    Board board;
-    Quadrant[] boardQuads;
-    TicTacToe[] boardTictactoes;
-    Box[][] boardBoxes;
+    public Board board;
+    public Quadrant[] boardQuads;
+    public TicTacToe[] boardTictactoes;
+    public Box[][] boardBoxes;
      
     public BoardJFrame() {
     	setTitle(TITLE);
