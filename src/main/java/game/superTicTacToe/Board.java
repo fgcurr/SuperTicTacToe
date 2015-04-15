@@ -9,7 +9,6 @@ public class Board {
 	public String finalMessage;
 	public Move allMoves[];
 	public Quadrant quads[];
-//	public JPanel panels[];
 //	public TicTacToe tictactoes[]; tic tac toes are initialized in each quadrant..
 //	public Box[][] boxes; boxes are initialized in each tic tac toe
 	public Character character;
@@ -31,7 +30,6 @@ public class Board {
 		for(int i = 0; i < quads.length; i++){
 			quads[i].setQuadrant(panels[i]);
 		}
-//		this.panels = panels;
 	}
 	
 	public int findQuadrant(JPanel parent){
