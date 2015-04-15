@@ -1,6 +1,8 @@
 package test.java.game.superTicTacToe;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import main.java.game.gui.BoardJFrame;
 import main.java.game.superTicTacToe.Box;
+import main.java.game.superTicTacToe.Character;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,14 +10,16 @@ import org.junit.Test;
 public class BoxTest {
 	
 	Box box;
-	main.java.game.superTicTacToe.Character chara;
+	Character chara;
+	BoardJFrame BoardJ;
 	
 	@Before
 	public void setUp() {
+		BoardJ = new BoardJFrame();
+		
 		box = new Box();
-		chara = new main.java.game.superTicTacToe.Character();
-		chara.type = "X";
-		box.charcter = chara;
+		chara = new Character(Character.AI);
+		box.set(chara);
 	}
 	
 	/**
@@ -23,7 +27,8 @@ public class BoxTest {
 	 */
 	@Test
 	public void testLoad() {
-		throw new RuntimeException();
+    	BoardJ.setVisible(true);
+		assertTrue("Box is not loaded!",BoardJ.isValid());
 	}
 	
 	/**
@@ -39,6 +44,6 @@ public class BoxTest {
 	 */
 	@Test
 	public void testCharacterPlacedinBox(){
-		assertTrue("Box is empty",box.charcter != null);
+		assertTrue("Box is empty",!box.isEmpty());
 	}
 }

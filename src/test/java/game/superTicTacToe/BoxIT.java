@@ -1,6 +1,7 @@
 package test.java.game.superTicTacToe;
 import static org.junit.Assert.*;
 import main.java.game.superTicTacToe.Box;
+import main.java.game.superTicTacToe.Character;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,13 +9,17 @@ import org.junit.Test;
 
 public class BoxIT {
 	
-	Box box;
-	main.java.game.superTicTacToe.Character chara;
+	Character ai;
+	Character human;
+	Character chara;
+	Box[][] boardBoxes;
 	
 	@Before
 	public void setUp() {
-		chara = new main.java.game.superTicTacToe.Character();
-		box = new Box();
+    	boardBoxes = new Box[9][9];
+    	boardBoxes[0][0] = new Box();
+    	ai = new Character(Character.AI);
+    	human = new Character(Character.HUMAN);
 	}
 	
 	/**
@@ -22,9 +27,9 @@ public class BoxIT {
 	 */
 	@Test
 	public void testIsO(){
-		chara.type = "O";
-		box.charcter = chara;
-		assertTrue("Character is not an O", box.charcter.type == "O");
+		chara = new Character(Character.AI);
+		boardBoxes[0][0].set(chara);
+		assertTrue("Character is not an O", boardBoxes[0][0].getCharacter().type == ai.type);
 	}
 	
 	/**
@@ -32,9 +37,9 @@ public class BoxIT {
 	 */
 	@Test
 	public void testIsX(){
-		chara.type = "X";
-		box.charcter = chara;
-		assertTrue("Character is not an X", box.charcter.type == "X");
+		chara = new Character(Character.HUMAN);
+		boardBoxes[0][0].set(chara);
+		assertTrue("Character is not an X", boardBoxes[0][0].getCharacter().type == human.type);
 	}
 	
 	/**
@@ -42,7 +47,7 @@ public class BoxIT {
 	 */
 	@Test
 	public void testIsEmpty(){
-		box.charcter = chara;
-		assertTrue("Character is not empty", box.charcter.type == null);
+		chara = new Character(Character.AI);
+		assertTrue("Character is not empty", boardBoxes[0][0].getCharacter().type == "N/A");
 	}
 }

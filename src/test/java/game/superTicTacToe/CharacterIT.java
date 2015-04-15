@@ -1,18 +1,18 @@
 package test.java.game.superTicTacToe;
 import static org.junit.Assert.*;
 
+import main.java.game.superTicTacToe.Character;
 import org.junit.Before;
 import org.junit.Test;
 
 
 public class CharacterIT {
 
-	main.java.game.superTicTacToe.Character chara;
+	Character chara;
 	
 	@Before
 	public void setUp() {
-		chara = new main.java.game.superTicTacToe.Character();
-		chara.type ="X";
+		chara = new Character(Character.AI);
 	}
 	
 	/**

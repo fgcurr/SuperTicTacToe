@@ -37,9 +37,8 @@ public class Board {
 	public int findQuadrant(JPanel parent){
 		int quadrant = 0;
 		
-		for ( int i =0; i<9; i++) {
+		for (int i =0; i<9; i++) {
 			if (quads[i].getQuadrant().equals(parent)) {
-//			if (panels[i].equals(parent)) {
 				System.out.print("["+i+",");
 				quadrant = i;
 				break;

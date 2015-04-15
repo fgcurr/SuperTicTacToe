@@ -1,17 +1,20 @@
 package test.java.game.superTicTacToe;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertTrue;
+import main.java.game.gui.BoardJFrame;
+import main.java.game.superTicTacToe.Character;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class CharacterTest {
 
-	main.java.game.superTicTacToe.Character chara;
+	BoardJFrame boardJ;
 	
 	@Before
 	public void setUp() {
-		chara = new main.java.game.superTicTacToe.Character();
-		chara.type = "X";
+		boardJ = new BoardJFrame();
+		boardJ.AIMoves(0, 0);
 	}
 	
 	/**
@@ -19,7 +22,7 @@ public class CharacterTest {
 	 */
 	@Test
 	public void testLoad() {
-		assertTrue("Character did not load.", (chara.type != ""));
+		assertTrue("Character did not load.", boardJ.boardBoxes[0][0].getCharacter().type != "");
 	}
 	
 	/**
@@ -27,6 +30,6 @@ public class CharacterTest {
 	 */
 	@Test
 	public void testCharType() {
-		assertTrue("Character type does not exist.", chara.type != null);
+		assertTrue("Character type does not exist.", boardJ.boardBoxes[0][0].getCharacter().type != null);
 	}
 }
