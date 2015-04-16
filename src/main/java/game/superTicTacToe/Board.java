@@ -50,6 +50,61 @@ public class Board {
 		return finished;
 	}
 	
+	/**
+	 * Returns true if the board has been won by a player
+	 * @param character
+	 * @return
+	 */
+	public boolean isWonBy(Character character) {
+
+
+		if(quads[0].tictactoe.isLinedUp(character) && quads[1].tictactoe.isLinedUp(character) && quads[2].tictactoe.isLinedUp(character))
+		{
+			finished = true;
+			return true;
+		}
+		else if(quads[3].tictactoe.isLinedUp(character) && quads[4].tictactoe.isLinedUp(character) && quads[5].tictactoe.isLinedUp(character))
+		{
+			finished = true;
+			return true;
+		}
+		else if(quads[6].tictactoe.isLinedUp(character) && quads[7].tictactoe.isLinedUp(character) && quads[8].tictactoe.isLinedUp(character))
+		{
+			finished = true;
+			return true;
+		}
+		else if(quads[0].tictactoe.isLinedUp(character) && quads[3].tictactoe.isLinedUp(character) && quads[6].tictactoe.isLinedUp(character))
+		{
+			finished = true;
+			return true;
+		}
+		else if(quads[1].tictactoe.isLinedUp(character) && quads[4].tictactoe.isLinedUp(character) && quads[7].tictactoe.isLinedUp(character))
+		{
+			finished = true;
+			return true;
+		}
+		else if(quads[2].tictactoe.isLinedUp(character) && quads[5].tictactoe.isLinedUp(character) && quads[8].tictactoe.isLinedUp(character))
+		{
+			finished = true;
+			return true;
+		}
+		else if(quads[0].tictactoe.isLinedUp(character) && quads[4].tictactoe.isLinedUp(character) && quads[8].tictactoe.isLinedUp(character))
+		{
+			finished = true;
+			return true;
+		}
+		else if(quads[2].tictactoe.isLinedUp(character) && quads[4].tictactoe.isLinedUp(character) && quads[6].tictactoe.isLinedUp(character))
+		{
+			finished = true;
+			return true;
+		}
+		else
+		{
+			finished = false;
+			return false;
+		}
+	}
+	
 	public void checkXO(){
 		if(numOfX >= 40  || numOfO >= 40){
 			finished = true;
