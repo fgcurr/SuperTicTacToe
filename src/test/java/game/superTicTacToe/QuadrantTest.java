@@ -31,7 +31,7 @@ public class QuadrantTest {
 	 */
 	@Test
 	public void testFinishedQuadrantRejectingClicks(){
-//		throw new RuntimeException();
+		throw new RuntimeException();
 	}
 	
 	/**

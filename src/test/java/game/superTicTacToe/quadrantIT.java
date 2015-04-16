@@ -28,6 +28,6 @@ public class quadrantIT {
 	 */
 	@Test
 	public void testWhoWonQuadrant(){
-//		throw new RuntimeException();
+		throw new RuntimeException();
 	}
 }

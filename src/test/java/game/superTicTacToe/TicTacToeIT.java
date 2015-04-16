@@ -14,7 +14,7 @@ public class TicTacToeIT {
 	 */
 	@Test
 	public void testPlaceX(){
-//		throw new RuntimeException();
+		throw new RuntimeException();
 	}
 
 	/**
@@ -22,7 +22,7 @@ public class TicTacToeIT {
 	 */
 	@Test
 	public void testPlaceO(){
-//		throw new RuntimeException();
+		throw new RuntimeException();
 	}
 
 	/**
@@ -30,7 +30,7 @@ public class TicTacToeIT {
 	 */
 	@Test
 	public void testXWins(){
-		
+		throw new RuntimeException();
 	}
 
 	/**
@@ -38,7 +38,7 @@ public class TicTacToeIT {
 	 */
 	@Test
 	public void testOWins(){
-		
+		throw new RuntimeException();
 	}
 	
 }
