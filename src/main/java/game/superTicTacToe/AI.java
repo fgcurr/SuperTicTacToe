@@ -25,11 +25,11 @@ public class AI {
 	
 	public AI(TicTacToe tictactoe) {
 		this.tictactoe = tictactoe;
-		rootsChildrenScores = new ArrayList<>();
+		rootsChildrenScores = new ArrayList();
 	}
 	
 	public void callMiniMax(/* TicTacToe tictactoe */int depth, int turn) {
-		rootsChildrenScores = new ArrayList<>();
+		rootsChildrenScores = new ArrayList();
 		minimax(tictactoe, depth, turn);
 	}
 	
@@ -46,7 +46,7 @@ public class AI {
 		List<Box> availableboxes = tictactoe.getEmptyBoxes();
 		if (availableboxes.isEmpty()) return 0;
 		
-		List<Integer> scores = new ArrayList<>();
+		List<Integer> scores = new ArrayList();
 		for (Box b : tictactoe.boxes) {
 			if (b.isEmpty()) {
 				if (turn == 1) { // Computer's turn
