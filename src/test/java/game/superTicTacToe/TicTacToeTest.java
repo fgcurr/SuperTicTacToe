@@ -1,11 +1,16 @@
 package test.java.game.superTicTacToe;
+import static org.junit.Assert.assertTrue;
+import main.java.game.gui.BoardJFrame;
+
 import org.junit.*;
 
 public class TicTacToeTest {
 	
+	BoardJFrame boardJ;
+	
 	@Before
 	public void setUp() {
-		
+		boardJ = new BoardJFrame();
 	}
 	
 	/**
@@ -13,7 +18,8 @@ public class TicTacToeTest {
 	 */
 	@Test
 	public void testLoad() {
-		throw new RuntimeException();
+    	boardJ.setVisible(true);
+		assertTrue("TicTacToe is not loaded!",boardJ.isValid());
 	}
 	
 	/**
@@ -21,6 +27,12 @@ public class TicTacToeTest {
 	 */
 	@Test
 	public void testFinished() {
-		throw new RuntimeException();
+		// Makes AI go three times so it completes the tictactoe
+		for(int i = 0; i < 3; i++){
+			boardJ.AIMoves(0, i);
+		}
+		
+		// Tests if tictactoe is done
+		assertTrue("Board is not completed.",boardJ.boardQuads[0].tictactoe.isOver());
 	}
 }

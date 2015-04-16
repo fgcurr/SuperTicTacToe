@@ -23,7 +23,7 @@ public class BoardTest {
 	@Test
 	public void testJFrame() {
     	BoardJ.setVisible(true);
-		assertTrue("Box is not loaded!",8==8);
+		assertTrue("Board is not loaded!",BoardJ.isValid());
 	}
 	
 	/**
