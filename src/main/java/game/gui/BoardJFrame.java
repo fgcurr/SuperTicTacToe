@@ -22,12 +22,6 @@ import main.java.game.superTicTacToe.Character;
 import main.java.game.superTicTacToe.Quadrant;
 import main.java.game.superTicTacToe.TicTacToe;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author User
@@ -47,6 +41,8 @@ public class BoardJFrame extends javax.swing.JFrame {
     public Quadrant[] boardQuads;
     public TicTacToe[] boardTictactoes;
     public Box[][] boardBoxes;
+    
+    int activequad; // For disabling every other quad
      
     public BoardJFrame() {
     	setTitle(TITLE);
@@ -97,6 +93,29 @@ public class BoardJFrame extends javax.swing.JFrame {
     	
     	for (int i =0; i<9; i++) {
     		content.add(panels[i]);
+    	}
+    }
+    
+    /**
+     * Disable all quadrants except 'activequad'.
+     * If its a free turn enable all quadrants except the ones which are over
+     */
+    public void disableQuadrants() {
+    	if (boardQuads[activequad].tictactoe.isOver()) {
+    		for (int i =0; i < boardQuads.length; i++) {
+    			if (!boardQuads[i].tictactoe.isOver())
+    				boardQuads[i].enable();
+    		}
+    	}
+    	else {
+	    	for (int i = 0; i < boardQuads.length ; i++) {
+	    		if (i == activequad) {
+	    			boardQuads[i].enable();
+	    		}
+	    		else {
+	    			boardQuads[i].disable();
+	    		}
+	    	}
     	}
     }
     
@@ -233,8 +252,9 @@ class BoxHandler implements ActionListener
 			AI ai = new AI(boardTictactoes[box]);
 			ai.callMiniMax(0, 1);
 			AIMoves(box, ai.returnBestMove());
+			activequad = ai.returnBestMove();
+			disableQuadrants();
 		}
-		
 	}
 }
 }
