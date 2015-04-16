@@ -46,9 +46,9 @@ public class Board {
 	}
 	
 	public boolean isFinished(){
-//		checkXO();
 		isWonBy(new Character(2));
 		isWonBy(new Character(1));
+		checkXO();
 		return finished;
 	}
 	
