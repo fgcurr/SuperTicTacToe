@@ -2,7 +2,13 @@ package main.java.game.superTicTacToe;
 
 public class Move {
 	
-    Quadrant quadrant;
-    Box box;
-    Character character;
+	public Move() {
+		
+	}
+	
+	public void move(Character character, Box b) {
+		b.set(character);
+	}
+	
+	
 }
