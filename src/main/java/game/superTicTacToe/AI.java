@@ -2,6 +2,7 @@ package main.java.game.superTicTacToe;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 class BoxAndScore {
 	int score;
@@ -95,8 +96,20 @@ public class AI {
         }
         return list.get(index);
     }
-		
-	// Can probably incorporate class Move here..
+    
+    /**
+     * Method returns true if all scores are 0, meaning an empty box
+     * @return same
+     */
+    public boolean emptyQuadrant() {
+    	boolean same = true;
+    	for (int i = 0; i<rootsChildrenScores.size()-1; i++) {
+    		if (rootsChildrenScores.get(i).score != rootsChildrenScores.get(i+1).score || rootsChildrenScores.get(i).score != 0)
+    			same = false;
+    	}
+    	return same;
+    }
+    
 	public int returnBestMove() {
 		
 		int MAX = -100000;
@@ -108,8 +121,16 @@ public class AI {
                 best = i;
             }
         }
-
-        return rootsChildrenScores.get(best).boxnum;
 		
+		for (BoxAndScore pas : rootsChildrenScores) {
+            System.out.println("Point: " + pas.boxnum + " Score: " + pas.score);
+        }
+		
+		if (emptyQuadrant()) {
+			// Select random since its an empty quadrant with each box comprising of 0 score
+			Random rnd = new Random();
+			best = rnd.nextInt(rootsChildrenScores.size());
+		}
+        return rootsChildrenScores.get(best).boxnum;
 	}
 }
