@@ -90,7 +90,7 @@ public class AI {
 		// Return if depth gets more than 3
 		if (depth > 3) return +1;
 		
-		List<Integer> scores = new ArrayList<>();
+		List<Integer> scores = new ArrayList();
 		for (Box b : tictactoe.boxes) {
 			if (b.isEmpty()) {
 				if (turn == 1) { // Computer's turn
