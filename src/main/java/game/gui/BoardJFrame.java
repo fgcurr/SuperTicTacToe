@@ -3,6 +3,7 @@ package main.java.game.gui;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import main.java.game.superTicTacToe.AI;
@@ -28,12 +30,15 @@ import main.java.game.superTicTacToe.TicTacToe;
  */
 public class BoardJFrame extends javax.swing.JFrame {
 	private static final String TITLE = "Super Tic Tac Toe";
-	private static final int WIDTH = 750;
-	private static final int HEIGHT = 750;
+	private static final int WIDTH = 900;
+	private static final int HEIGHT = 900;
     private Container content;
     private JLabel title;
     private JButton[][] boxes;
+    private JButton exitButton;
+    private JButton resetButton;
     private JPanel[] panels;
+    private JPanel titlepanel;
     private BoxHandler[][] boxHandlers;
     
     // Class declaration
@@ -55,13 +60,15 @@ public class BoardJFrame extends javax.swing.JFrame {
     	boardTictactoes = new TicTacToe[9];
     	boardBoxes = new Box[9][9];
     	
+    	// GUI initialization
     	content = getContentPane();
     	content.setBackground(Color.blue.darker());
-    	content.setLayout(new GridLayout(3,3));
+    	content.setLayout(new GridLayout(4,3));
     	boxes = new JButton[9][9];
     	panels = new JPanel[9];
-    	title = new JLabel("Welcome to Super Tic Tac Toe");
-    	title.setLayout(new GridLayout(1,1));
+    	title = new JLabel("Welcome to Super Tic Tac Toe", SwingConstants.CENTER);
+    	title.setForeground(Color.white);
+    	title.setFont(new Font("Helvetica", Font.BOLD, 16));
     	boxHandlers = new BoxHandler[9][9];
     	Border border = BorderFactory.createLineBorder(Color.BLUE, 1);
     	
@@ -75,6 +82,13 @@ public class BoardJFrame extends javax.swing.JFrame {
     		}
     	}
     	
+    	// Bottom UI initialization
+//    	titlepanel = new JPanel();
+    	exitButton = new JButton("EXIT");
+    	exitButton.setFont(new Font("Helvetica", Font.BOLD, 30));
+    	resetButton = new JButton("Restart");
+    	resetButton.setFont(new Font("Helvetica", Font.BOLD, 30));
+//    	titlepanel.add(title);
     	for (int i =0; i<9; i++) {
     		panels[i] = new JPanel();
     		
@@ -90,10 +104,13 @@ public class BoardJFrame extends javax.swing.JFrame {
     	}
     	
     	board.setQuadrants(panels);
-    	
     	for (int i =0; i<9; i++) {
     		content.add(panels[i]);
     	}
+    	
+    	content.add(resetButton);
+    	content.add(title);
+    	content.add(exitButton);
     }
     
     /**
@@ -116,6 +133,15 @@ public class BoardJFrame extends javax.swing.JFrame {
 	    			boardQuads[i].disable();
 	    		}
 	    	}
+    	}
+    }
+    
+    /**
+     * This method disables all
+     */
+    public void disableAll() {
+    	for (int i =0; i < boardQuads.length; i++) {
+    		boardQuads[i].disable();
     	}
     }
     
@@ -147,7 +173,6 @@ public class BoardJFrame extends javax.swing.JFrame {
 		
 		System.out.println("Response: [" + quadrant + "," + box + "] ");
 		
-		// TODO: Release control to human here somewhere...
     }
     
     public void checkAndDisable(Quadrant quadrant, TicTacToe tictactoe) {
@@ -167,6 +192,23 @@ public class BoardJFrame extends javax.swing.JFrame {
 			
 			quadrant.disable();
 		}
+    }
+    
+    /**
+     * This method checks if the board is finished and disables everything and updates text at bottom
+     */
+    public boolean checkBoard() {
+    	if (board.isFinished()) {
+			if (board.isWonBy(new Character(Character.AI)))
+				title.setText("AI won the game!");
+			else if (board.isWonBy(new Character(Character.HUMAN)))
+				title.setText("Human won the game!");
+			
+			// Disable all buttons
+			disableAll();
+			return true;
+		}
+    	return false;
     }
 
     /**
@@ -205,8 +247,7 @@ class BoxHandler implements ActionListener
 	public void actionPerformed(ActionEvent e) {
 		
 		// If board is finished then return
-		if (board.finished)
-			return;
+		checkBoard();
 		
 		// Get button pressed
 		JButton pressed = (JButton)(e.getSource());
@@ -242,7 +283,7 @@ class BoxHandler implements ActionListener
 		
 		Random rndm = new Random();
 
-		//TODO: If game is finished keeps on looping. Must stop it
+		// Pick a random box if one is over
 		while(boardTictactoes[box].isOver()){
 			box = rndm.nextInt(9);
 		}
@@ -251,10 +292,16 @@ class BoxHandler implements ActionListener
 			// Call the AI and ask him to make move:
 			AI ai = new AI(boardTictactoes[box]);
 			ai.callMiniMax(0, 1);
-			AIMoves(box, ai.returnBestMove());
-			activequad = ai.returnBestMove();
+			int aimove = ai.returnBestMove();
+			AIMoves(box, aimove);
+			
+			// Disable all other quadrants
+			activequad = aimove;
 			disableQuadrants();
 		}
+		
+		// If board is finished then return
+		checkBoard();
 	}
 }
 }
