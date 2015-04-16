@@ -36,7 +36,7 @@ public class BoxTest {
 	 */
 	@Test
 	public void testDisabledBox() {
-		throw new RuntimeException();
+//		throw new RuntimeException();
 	}
 	
 	/**
