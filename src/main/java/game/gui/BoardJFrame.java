@@ -177,11 +177,11 @@ public class BoardJFrame extends javax.swing.JFrame {
     
     public void checkAndDisable(Quadrant quadrant, TicTacToe tictactoe) {
 		if (tictactoe.isOver()) {
-			if (tictactoe.isLinedUp(new Character(Character.AI))) {
+			if (tictactoe.isLinedUp(new Character(1))) {
 				quadrant.setOutline(Color.RED);
 			}
 			
-			else if (tictactoe.isLinedUp(new Character(Character.HUMAN))) {
+			else if (tictactoe.isLinedUp(new Character(2))) {
 				quadrant.setOutline(Color.BLUE);
 			}
 			
@@ -199,9 +199,9 @@ public class BoardJFrame extends javax.swing.JFrame {
      */
     public boolean checkBoard() {
     	if (board.isFinished()) {
-			if (board.isWonBy(new Character(Character.AI)))
+			if (board.isWonBy(new Character(1)))
 				title.setText("AI won the game!");
-			else if (board.isWonBy(new Character(Character.HUMAN)))
+			else if (board.isWonBy(new Character(2)))
 				title.setText("Human won the game!");
 			
 			// Disable all buttons
@@ -290,8 +290,13 @@ class BoxHandler implements ActionListener
 		
 		if (!boardTictactoes[box].isOver()) {
 			// Call the AI and ask him to make move:
+//			AI ai = new AI(boardTictactoes[box]);
+//			ai.callMiniMax(0, 1);
+//			int aimove = ai.returnBestMove();
+//			AIMoves(box, aimove);
+			
 			AI ai = new AI(boardTictactoes[box]);
-			ai.callMiniMax(0, 1);
+			ai.callMiniMaxBoard(board, box, 0, 1);
 			int aimove = ai.returnBestMove();
 			AIMoves(box, aimove);
 			
@@ -302,6 +307,9 @@ class BoxHandler implements ActionListener
 		
 		// If board is finished then return
 		checkBoard();
+		
+		System.out.println("O: " + Board.numOfO);
+		System.out.println("X: " + Board.numOfX);
 	}
 }
 }

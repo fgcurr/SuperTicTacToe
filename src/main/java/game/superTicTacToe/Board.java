@@ -3,8 +3,8 @@ package main.java.game.superTicTacToe;
 import javax.swing.JPanel;
 
 public class Board {
-	public int numOfX;
-	public int numOfO;
+	public static int numOfX;
+	public static int numOfO;
 	public boolean finished;
 	public String finalMessage;
 	public Move allMoves[];
@@ -47,8 +47,8 @@ public class Board {
 	
 	public boolean isFinished(){
 //		checkXO();
-		isWonBy(new Character(Character.HUMAN));
-		isWonBy(new Character(Character.AI));
+		isWonBy(new Character(2));
+		isWonBy(new Character(1));
 		return finished;
 	}
 	
