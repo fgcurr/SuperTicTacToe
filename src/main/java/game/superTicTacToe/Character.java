@@ -12,12 +12,25 @@ public class Character extends Entity {
 	public static final String AI = "AI";
 	
 	public Character(String humanOrAI) {
-		if (humanOrAI.equals(HUMAN))
+		if (humanOrAI.equals(HUMAN)) {
 			type = "X";
-		else if (humanOrAI.equals(AI))
+			Board.numOfX++;
+		}
+		else if (humanOrAI.equals(AI)) {
+			Board.numOfO++;
 			type = "O";
+		}
 		else
 			type = "N/A"; // This is so that when instantiating Character class its not null...
+	}
+	
+	// 1 = computer, 2 = human. This constructor used when not making an actual move
+	public Character(int move) {
+		if (move == 1)
+			type = "O";
+		else if (move == 2)
+			type = "X";
+		else type = "N/A";
 	}
 	
 	/**
