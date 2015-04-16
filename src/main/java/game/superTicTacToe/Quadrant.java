@@ -53,6 +53,14 @@ public class Quadrant extends Entity{
 		}
 	}
 	
+	public void enable(){
+		for (Component b : quadrant.getComponents()) {
+			JButton cb = (JButton) b;
+			cb.setEnabled(true);
+		}
+		setOutline(Color.black);
+	}
+	
 	public void setOutline(Color color){
 		Border border = BorderFactory.createLineBorder(color, 2);
 		quadrant.setBorder(border);
