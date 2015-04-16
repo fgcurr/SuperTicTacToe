@@ -49,12 +49,14 @@ public class AITest {
 		ai.callMiniMax(0, 1);
 
 		BoardJFrame boardJ = new BoardJFrame();
+		int aiNextMove = ai.returnBestMove();
 		
-		boardJ.AIMoves(0, ai.returnBestMove());
+		boardJ.AIMoves(0, aiNextMove);
 		
 		// If ai is playing then a box should be filled
-		assertTrue("AI is not playing.", 
-				boardJ.boardTictactoes[0].getEmptyBoxes().size() != 8);
+//		assertTrue("AI is not playing."+boardJ.boardTictactoes[0].getEmptyBoxes().size(), 
+//				boardJ.boardTictactoes[0].getEmptyBoxes().size() != 8);
+		assertTrue("AI is not playing.", !boardJ.boardBoxes[0][aiNextMove].isEmpty());
 	}
 	
 }
