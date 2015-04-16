@@ -12,13 +12,13 @@ public class Box extends Entity{
 	// box empty at the start, but character can't be null so its '0'
 	public Box() {
 		empty = true;
-		character = new Character("N/A");
+		character = new Character(-1);
 	}
 	
 	// Public constructor for setting the box number from tic tac toe
 	public Box(int num) {
 		empty = true;
-		character = new Character("N/A");
+		character = new Character(-1);
 		this.num = num;
 	}
 	
@@ -48,6 +48,6 @@ public class Box extends Entity{
 	 */
 	public void unSet() {
 		empty = true;
-		this.character = new Character("N/A");
+		this.character = new Character(-1);
 	}
 }

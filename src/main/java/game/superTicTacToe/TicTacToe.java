@@ -15,7 +15,7 @@ public class TicTacToe extends Entity{
 	 * @return
 	 */
 	public boolean isOver() {
-		if (isLinedUp(new Character(Character.HUMAN)) || isLinedUp(new Character(Character.AI))
+		if (isLinedUp(new Character(2)) || isLinedUp(new Character(1))
 				|| getEmptyBoxes().isEmpty()) {
 			over = true;
 			return over;

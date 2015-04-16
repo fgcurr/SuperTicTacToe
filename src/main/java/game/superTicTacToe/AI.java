@@ -34,6 +34,11 @@ public class AI {
 		minimax(tictactoe, depth, turn);
 	}
 	
+	public void callMiniMaxBoard(Board board, int ticNum, int depth, int turn) {
+		rootsChildrenScores = new ArrayList();
+		minimaxBoard(board, ticNum, depth, turn);
+	}
+	
 	/**
 	 * Returns the best move according to the minimax algorithm.
 	 * Recursive algorithm with a base condition of returning the score if tictactoe is over
@@ -42,8 +47,8 @@ public class AI {
 	public int minimax(TicTacToe tictactoe, int depth, int turn) {
 		
 		// If tic tac toe is over then return with respective scores
-		if (tictactoe.isLinedUp(new Character(Character.AI))) return +1;
-		if (tictactoe.isLinedUp(new Character(Character.HUMAN))) return -1;
+		if (tictactoe.isLinedUp(new Character(1))) return +1;
+		if (tictactoe.isLinedUp(new Character(2))) return -1;
 		List<Box> availableboxes = tictactoe.getEmptyBoxes();
 		if (availableboxes.isEmpty()) return 0;
 		
@@ -51,7 +56,7 @@ public class AI {
 		for (Box b : tictactoe.boxes) {
 			if (b.isEmpty()) {
 				if (turn == 1) { // Computer's turn
-					b.set(new Character(Character.AI));
+					b.set(new Character(1));
 					int currentscore = minimax(tictactoe, depth + 1, 2);
 					scores.add(currentscore);
 					
@@ -61,7 +66,7 @@ public class AI {
 				}
 				
 				else if (turn == 2) { // Human's turn
-					b.set(new Character(Character.HUMAN));
+					b.set(new Character(2));
 					int currentscore = minimax(tictactoe, depth + 1, 1);
 					scores.add(currentscore);
 				}
@@ -70,6 +75,45 @@ public class AI {
 		}
 		// Return max score if its comp or min score if its human
 		return turn == 1 ? returnMax(scores) : returnMin(scores);
+	}
+	
+	public int minimaxBoard(Board board, int ticNum, int depth, int turn) {
+		TicTacToe tictactoe = board.quads[ticNum].tictactoe;
+		if (board.isWonBy(new Character(1))) return +1;
+		if (board.isWonBy(new Character(2))) return -1;
+		List<Box> availableboxes = tictactoe.getEmptyBoxes();
+		// If availableboxes list is empty/this tic tac toe is full then its a free turn for computer. Meaning more points..
+		if (availableboxes.isEmpty() && turn == 1) return +2;
+		// If human gets empty box means more points for him less for us
+		if (availableboxes.isEmpty() && turn == 2) return -2;
+		
+		// Return if depth gets more than 3
+		if (depth > 3) return +1;
+		
+		List<Integer> scores = new ArrayList<>();
+		for (Box b : tictactoe.boxes) {
+			if (b.isEmpty()) {
+				if (turn == 1) { // Computer's turn
+					System.out.println("AI moves: [" + ticNum + "," + b.getNum() + "]");
+					b.set(new Character(1));
+					int currentScore = minimaxBoard(board, b.getNum(), depth + 1, 2);
+					scores.add(currentScore);
+					
+					if (depth == 0)
+						rootsChildrenScores.add(new BoxAndScore(currentScore, b.getNum()));
+				}
+				
+				else if (turn == 2) { // Human's turn
+					b.set(new Character(2));
+					System.out.println("Human moves: [" + ticNum + "," + b.getNum() + "]");
+					int currentScore = minimaxBoard(board, b.getNum(), depth + 1, 1);
+					scores.add(currentScore);
+				}
+				b.unSet(); // Reset this box
+			}
+		}
+		// Return max score if its comp or min score if its human
+		return turn == 1? returnMax(scores) : returnMin(scores);
 	}
 	
 	
@@ -104,7 +148,7 @@ public class AI {
     public boolean emptyQuadrant() {
     	boolean same = true;
     	for (int i = 0; i<rootsChildrenScores.size()-1; i++) {
-    		if (rootsChildrenScores.get(i).score != rootsChildrenScores.get(i+1).score || rootsChildrenScores.get(i).score != 0)
+    		if (rootsChildrenScores.get(i).score != rootsChildrenScores.get(i+1).score /* ||  rootsChildrenScores.get(i).score != 0 */)
     			same = false;
     	}
     	return same;
