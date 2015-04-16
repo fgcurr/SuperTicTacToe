@@ -1,5 +1,6 @@
 package test.java.game.superTicTacToe;
 import static org.junit.Assert.*;
+import main.java.game.gui.BoardJFrame;
 import main.java.game.superTicTacToe.Board;
 
 import org.junit.Before;
@@ -7,11 +8,13 @@ import org.junit.Test;
 
 public class BoardTest {
 	
+	BoardJFrame BoardJ;
 	Board board;
 	
 	@Before
 	public void setUp() {
-		board = new Board();
+		board  = new Board();
+		BoardJ = new BoardJFrame();
 	}
 	
 	/**
@@ -19,7 +22,8 @@ public class BoardTest {
 	 */
 	@Test
 	public void testJFrame() {
-		throw new RuntimeException();
+    	BoardJ.setVisible(true);
+		assertTrue("Board is not loaded!",BoardJ.isValid());
 	}
 	
 	/**
