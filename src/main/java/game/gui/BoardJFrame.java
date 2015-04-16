@@ -281,6 +281,8 @@ class BoxHandler implements ActionListener
 		// Check if this quadrant is over and disable it accordingly
 		checkAndDisable(boardQuads[quadrant], boardTictactoes[quadrant]);
 		
+		checkBoard();
+		
 		Random rndm = new Random();
 
 		// Pick a random box if one is over
@@ -290,15 +292,15 @@ class BoxHandler implements ActionListener
 		
 		if (!boardTictactoes[box].isOver()) {
 			// Call the AI and ask him to make move:
-//			AI ai = new AI(boardTictactoes[box]);
-//			ai.callMiniMax(0, 1);
-//			int aimove = ai.returnBestMove();
-//			AIMoves(box, aimove);
-			
 			AI ai = new AI(boardTictactoes[box]);
-			ai.callMiniMaxBoard(board, box, 0, 1);
+			ai.callMiniMax(0, 1);
 			int aimove = ai.returnBestMove();
 			AIMoves(box, aimove);
+			
+//			AI ai = new AI(boardTictactoes[box]);
+//			ai.callMiniMaxBoard(board, box, 0, 1);
+//			int aimove = ai.returnBestMove();
+//			AIMoves(box, aimove);
 			
 			// Disable all other quadrants
 			activequad = aimove;
@@ -306,7 +308,7 @@ class BoxHandler implements ActionListener
 		}
 		
 		// If board is finished then return
-		checkBoard();
+//		checkBoard();
 		
 		System.out.println("O: " + Board.numOfO);
 		System.out.println("X: " + Board.numOfX);
