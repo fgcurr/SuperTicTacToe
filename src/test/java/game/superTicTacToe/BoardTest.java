@@ -61,6 +61,6 @@ public class BoardTest {
 	 */
 	@Test
 	public void testFirstMoveRandom(){
-//		throw new RuntimeException();
+		throw new RuntimeException();
 	}
 }
