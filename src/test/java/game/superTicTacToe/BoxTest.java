@@ -1,5 +1,8 @@
 package test.java.game.superTicTacToe;
 import static org.junit.Assert.assertTrue;
+
+import java.awt.Component;
+
 import main.java.game.gui.BoardJFrame;
 import main.java.game.superTicTacToe.Box;
 import main.java.game.superTicTacToe.Character;
@@ -44,7 +47,10 @@ public class BoxTest {
 	 */
 	@Test
 	public void testDisabledBox() {
-		throw new RuntimeException();
+		BoardJ.boardQuads[0].disable();
+		Component c = BoardJ.boardQuads[0].quadrant.getComponent(0);
+		
+		assertTrue("Box still enabled", !c.isEnabled());
 	}
 	
 	/**
