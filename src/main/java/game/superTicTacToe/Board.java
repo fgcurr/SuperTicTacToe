@@ -46,7 +46,9 @@ public class Board {
 	}
 	
 	public boolean isFinished(){
-		checkXO();
+//		checkXO();
+		isWonBy(new Character(Character.HUMAN));
+		isWonBy(new Character(Character.AI));
 		return finished;
 	}
 	
@@ -100,7 +102,6 @@ public class Board {
 		}
 		else
 		{
-			finished = false;
 			return false;
 		}
 	}
