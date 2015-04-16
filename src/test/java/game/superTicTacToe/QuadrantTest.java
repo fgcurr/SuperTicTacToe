@@ -27,12 +27,12 @@ public class QuadrantTest {
 	
 	/**
 	 * Test number 5
-	 * Tests the rejection of clicks on a quadrant that has been finished
+	 * Tests the rejection of clicks on a quadrant that has been finished - will be done manually
 	 */
-	@Test
-	public void testFinishedQuadrantRejectingClicks(){
-		throw new RuntimeException();
-	}
+//	@Test
+//	public void testFinishedQuadrantRejectingClicks(){
+//		throw new RuntimeException();
+//	}
 	
 	/**
 	 * Tests if the quadrant is playable
