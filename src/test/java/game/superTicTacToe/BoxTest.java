@@ -28,6 +28,14 @@ public class BoxTest {
 	@Test
 	public void testLoad() {
     	BoardJ.setVisible(true);
+    	
+    	// Give it time to load
+    	try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+    	
 		assertTrue("Box is not loaded!",BoardJ.isValid());
 	}
 	

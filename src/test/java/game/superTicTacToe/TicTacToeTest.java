@@ -19,6 +19,14 @@ public class TicTacToeTest {
 	@Test
 	public void testLoad() {
     	boardJ.setVisible(true);
+
+    	// Give it time to load
+    	try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+    	
 		assertTrue("TicTacToe is not loaded!",boardJ.isValid());
 	}
 	

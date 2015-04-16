@@ -23,6 +23,14 @@ public class BoardTest {
 	@Test
 	public void testJFrame() {
     	BoardJ.setVisible(true);
+
+    	// Give it time to load
+    	try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+    	
 		assertTrue("Board is not loaded!",BoardJ.isValid());
 	}
 	
