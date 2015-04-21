@@ -35,7 +35,7 @@ public class BoardJFrame extends javax.swing.JFrame {
 	private static final int HEIGHT = 900;
     private Container content;
     private JLabel title;
-    private JButton[][] boxes;
+    public  JButton[][] boxes;
     private JButton exitButton;
     private JButton resetButton;
     private JPanel[] panels;
@@ -265,11 +265,6 @@ class BoxHandler implements ActionListener
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		// If board is finished then return
-		if(checkBoard()){
-//			return;
-		}
 		
 		// Get button pressed
 		JButton pressed = (JButton)(e.getSource());

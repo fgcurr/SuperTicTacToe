@@ -1,5 +1,6 @@
 package test.java.game.superTicTacToe;
 import static org.junit.Assert.*;
+import main.java.game.gui.BoardJFrame;
 import main.java.game.superTicTacToe.Move;
 import main.java.game.superTicTacToe.TicTacToe;
 import main.java.game.superTicTacToe.Character;
@@ -32,6 +33,9 @@ public class MoveTest {
 	 */
 	@Test
 	public void testGetMove() {
-//		throw new RuntimeException();
+		BoardJFrame boardJ = new BoardJFrame();
+		boardJ.boxes[0][0].doClick();
+		
+		assertTrue("Unable to get move of X", boardJ.boardBoxes[0][0].getCharacter().type == "X");
 	}
 }
