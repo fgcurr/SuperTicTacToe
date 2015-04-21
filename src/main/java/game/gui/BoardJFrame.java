@@ -181,7 +181,7 @@ public class BoardJFrame extends javax.swing.JFrame {
 		
     }
     
-    public void firstMove(){
+    public int firstMove(){
     	Move firstMove = new Move();
     	int move = firstMove.pickFirstMove();
     	
@@ -192,6 +192,7 @@ public class BoardJFrame extends javax.swing.JFrame {
     		activequad = aimove;
     		disableQuadrants();
     	}
+    	return move;
     }
     
     public void checkAndDisable(Quadrant quadrant, TicTacToe tictactoe) {
@@ -266,7 +267,9 @@ class BoxHandler implements ActionListener
 	public void actionPerformed(ActionEvent e) {
 		
 		// If board is finished then return
-		checkBoard();
+		if(checkBoard()){
+			return;
+		}
 		
 		// Get button pressed
 		JButton pressed = (JButton)(e.getSource());
@@ -280,6 +283,7 @@ class BoxHandler implements ActionListener
 			System.exit(0);
 		}
 		
+		// If the restart button was pressed
 		if(text == "Restart"){
 			frame.dispose();
 			main(null);
@@ -313,7 +317,9 @@ class BoxHandler implements ActionListener
 		// Check if this quadrant is over and disable it accordingly
 		checkAndDisable(boardQuads[quadrant], boardTictactoes[quadrant]);
 		
-		checkBoard();
+		if(checkBoard()){
+			return;
+		}
 		
 		Random rndm = new Random();
 
