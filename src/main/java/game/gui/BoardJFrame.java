@@ -21,6 +21,7 @@ import main.java.game.superTicTacToe.AI;
 import main.java.game.superTicTacToe.Board;
 import main.java.game.superTicTacToe.Box;
 import main.java.game.superTicTacToe.Character;
+import main.java.game.superTicTacToe.Move;
 import main.java.game.superTicTacToe.Quadrant;
 import main.java.game.superTicTacToe.TicTacToe;
 
@@ -48,6 +49,7 @@ public class BoardJFrame extends javax.swing.JFrame {
     public Box[][] boardBoxes;
     
     int activequad; // For disabling every other quad
+    static BoardJFrame frame;
      
     public BoardJFrame() {
     	setTitle(TITLE);
@@ -86,8 +88,10 @@ public class BoardJFrame extends javax.swing.JFrame {
 //    	titlepanel = new JPanel();
     	exitButton = new JButton("EXIT");
     	exitButton.setFont(new Font("Helvetica", Font.BOLD, 30));
+    	exitButton.addActionListener(new BoxHandler());
     	resetButton = new JButton("Restart");
     	resetButton.setFont(new Font("Helvetica", Font.BOLD, 30));
+    	resetButton.addActionListener(new BoxHandler());
 //    	titlepanel.add(title);
     	for (int i =0; i<9; i++) {
     		panels[i] = new JPanel();
@@ -111,6 +115,8 @@ public class BoardJFrame extends javax.swing.JFrame {
     	content.add(resetButton);
     	content.add(title);
     	content.add(exitButton);
+    	
+    	firstMove();
     }
     
     /**
@@ -175,6 +181,19 @@ public class BoardJFrame extends javax.swing.JFrame {
 		
     }
     
+    public void firstMove(){
+    	Move firstMove = new Move();
+    	int move = firstMove.pickFirstMove();
+    	
+    	if(move == 0){
+    		Random rndm = new Random();
+    		int aimove = rndm.nextInt(9); 
+    		AIMoves(rndm.nextInt(9), aimove);
+    		activequad = aimove;
+    		disableQuadrants();
+    	}
+    }
+    
     public void checkAndDisable(Quadrant quadrant, TicTacToe tictactoe) {
 		if (tictactoe.isOver()) {
 			if (tictactoe.isLinedUp(new Character(1))) {
@@ -232,7 +251,7 @@ public class BoardJFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(BoardJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     	
-    	BoardJFrame frame = new BoardJFrame();
+    	frame = new BoardJFrame();
     	frame.setVisible(true);
     	frame.setResizable(false);
     }
@@ -254,6 +273,19 @@ class BoxHandler implements ActionListener
 		
 		// Get buttons text
 		String text = pressed.getText();
+		
+		// If the exit button was pressed
+		if(text == "EXIT"){
+			System.out.println("Game exited");
+			System.exit(0);
+		}
+		
+		if(text == "Restart"){
+			frame.dispose();
+			main(null);
+			return;
+		}
+		
 		// If button is already played then return
 		if (text.equals("O") || text.equals("X"))
 			return;
