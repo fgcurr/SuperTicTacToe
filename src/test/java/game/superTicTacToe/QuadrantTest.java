@@ -48,7 +48,7 @@ public class QuadrantTest {
 	}
 	
 	/**
-	 * 
+	 * Tests if the quadrant that was played can be found
 	 */
 	@Test
 	public void testFindQuadrant(){

@@ -75,4 +75,17 @@ public class BoardTest {
 		
 		assertTrue("First move not given to a random player.", occurrences > 20);
 	}
+	
+	/**
+	 * Tests pressing the restart button
+	 */
+	@Test
+	public void testRestartButtonClicked(){
+		BoardJ.AIMoves(0, 0);
+		BoardJ.frame = new BoardJFrame();
+		
+		BoardJ.frame.resetButton.doClick();
+		
+		assertTrue("Board did not reset.", BoardJ.frame.boardBoxes[0][0].isEmpty());
+	}
 }
