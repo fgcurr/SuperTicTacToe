@@ -1,5 +1,9 @@
 package test.java.game.superTicTacToe;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
 import main.java.game.gui.BoardJFrame;
 import main.java.game.superTicTacToe.Board;
 
@@ -61,6 +65,14 @@ public class BoardTest {
 	 */
 	@Test
 	public void testFirstMoveRandom(){
-		throw new RuntimeException();
+		ArrayList<Integer> moves = new ArrayList<Integer>();
+		
+		for(int i = 0; i < 100; i++){
+			moves.add(BoardJ.firstMove());
+		}
+		
+		int occurrences = Collections.frequency(moves, 0);
+		
+		assertTrue("First move not given to a random player.", occurrences > 20);
 	}
 }

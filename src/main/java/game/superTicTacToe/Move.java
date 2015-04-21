@@ -26,8 +26,6 @@ public class Move {
 		
 		firstMove = rndm.nextInt(2);
 		
-		System.out.println(firstMove);
-		
 		return firstMove;
 	}
 }
