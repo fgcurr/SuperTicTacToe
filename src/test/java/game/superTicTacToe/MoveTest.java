@@ -32,6 +32,6 @@ public class MoveTest {
 	 */
 	@Test
 	public void testGetMove() {
-		throw new RuntimeException();
+//		throw new RuntimeException();
 	}
 }

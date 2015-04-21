@@ -268,7 +268,7 @@ class BoxHandler implements ActionListener
 		
 		// If board is finished then return
 		if(checkBoard()){
-			return;
+//			return;
 		}
 		
 		// Get button pressed
