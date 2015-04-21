@@ -36,8 +36,8 @@ public class BoardJFrame extends javax.swing.JFrame {
     private Container content;
     private JLabel title;
     public  JButton[][] boxes;
-    private JButton exitButton;
-    private JButton resetButton;
+    public  JButton exitButton;
+    public  JButton resetButton;
     private JPanel[] panels;
     private JPanel titlepanel;
     private BoxHandler[][] boxHandlers;
@@ -49,7 +49,7 @@ public class BoardJFrame extends javax.swing.JFrame {
     public Box[][] boardBoxes;
     
     int activequad; // For disabling every other quad
-    static BoardJFrame frame;
+    public static BoardJFrame frame;
      
     public BoardJFrame() {
     	setTitle(TITLE);
