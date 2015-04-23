@@ -48,7 +48,7 @@ public class BoardJFrame extends javax.swing.JFrame {
     public TicTacToe[] boardTictactoes;
     public Box[][] boardBoxes;
     
-    int activequad; // For disabling every other quad
+    public int activequad; // For disabling every other quad
     public static BoardJFrame frame;
      
     public BoardJFrame() {
@@ -346,9 +346,6 @@ class BoxHandler implements ActionListener
 		
 		// If board is finished then return
 //		checkBoard();
-		
-		System.out.println("O: " + Board.numOfO);
-		System.out.println("X: " + Board.numOfX);
 	}
 }
 }
