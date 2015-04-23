@@ -30,6 +30,6 @@ public class CharacterTest {
 	 */
 	@Test
 	public void testCharType() {
-		assertTrue("Character type does not exist.", boardJ.boardBoxes[0][0].getCharacter().type != null);
+		assertTrue("Character type does not exist.", boardJ.boardBoxes[0][0].getCharacter().getType() != null);
 	}
 }
