@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import main.java.game.gui.BoardJFrame;
+import main.java.game.superTicTacToe.Character;
 import main.java.game.superTicTacToe.Board;
 
 import org.junit.Before;
@@ -87,5 +88,29 @@ public class BoardTest {
 		BoardJ.frame.resetButton.doClick();
 		
 		assertTrue("Board did not reset.", BoardJ.frame.boardBoxes[0][0].isEmpty());
+	}
+	
+	/**
+	 * Testing if Board is indeed won by a player
+	 */
+	
+	@Test
+	public void testWonBy() {
+		
+		// Winning box 0
+		BoardJ.AIMoves(0,0);
+		BoardJ.AIMoves(0,1);
+		BoardJ.AIMoves(0,2);
+		// Winning box 4
+		BoardJ.AIMoves(4,3);
+		BoardJ.AIMoves(4,4);
+		BoardJ.AIMoves(4,5);
+		// Winning box 8
+		BoardJ.AIMoves(8,6);
+		BoardJ.AIMoves(8,7);
+		BoardJ.AIMoves(8,8);
+		
+		assertTrue("Board should be won by AI as it wins quadrants 0, 4 and 8", BoardJ.board.isWonBy(new Character(1)));
+		
 	}
 }

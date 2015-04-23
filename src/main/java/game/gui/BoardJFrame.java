@@ -78,7 +78,7 @@ public class BoardJFrame extends javax.swing.JFrame {
     		for (int j=0; j<9; j++) {
     			char ch = (char)('0'+j+1);
     			boxes[i][j] = new JButton(""+ch);
-    			boxes[i][j].setFont(new Font("Helvetica", Font.PLAIN, 25));
+    			boxes[i][j].setFont(new Font("Helvetica", Font.PLAIN, 15));
     			boxHandlers[i][j] = new BoxHandler();
     			boxes[i][j].addActionListener(boxHandlers[i][j]);
     		}
@@ -169,6 +169,7 @@ public class BoardJFrame extends javax.swing.JFrame {
 		
 		// Set the button
 		aiButton.setText("O");
+		aiButton.setFont(new Font("Helvetica", Font.PLAIN, 25));
 		aiButton.setForeground(Color.RED);
 		
 		// Get parent (quadrant which was clicked)
@@ -307,6 +308,7 @@ class BoxHandler implements ActionListener
 		
 		// Just for purposes of making human "X"
 		pressed.setText("X");
+		pressed.setFont(new Font("Helvetica", Font.PLAIN, 25));
 		pressed.setForeground(Color.BLUE);
 		
 		// Check if this quadrant is over and disable it accordingly
