@@ -34,7 +34,10 @@ public class MoveTest {
 	@Test
 	public void testGetMove() {
 		BoardJFrame boardJ = new BoardJFrame();
+		boardJ.boardQuads[0].quadrant.getComponent(0).setEnabled(true);
 		boardJ.boxes[0][0].doClick();
+
+		System.out.println(boardJ.boardBoxes[0][0].getCharacter().type);
 		
 		assertTrue("Unable to get move of X", boardJ.boardBoxes[0][0].getCharacter().type == "X");
 	}
