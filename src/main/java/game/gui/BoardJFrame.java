@@ -34,7 +34,7 @@ public class BoardJFrame extends javax.swing.JFrame {
 	private static final int WIDTH = 900;
 	private static final int HEIGHT = 900;
     private Container content;
-    private JLabel title;
+    public  JLabel title;
     public  JButton[][] boxes;
     public  JButton exitButton;
     public  JButton resetButton;
@@ -180,6 +180,8 @@ public class BoardJFrame extends javax.swing.JFrame {
 		
 		System.out.println("Response: [" + quadrant + "," + box + "] ");
 		
+		// Checks if the AI won the game with current move.
+		checkBoard();
     }
     
     public int firstMove(){

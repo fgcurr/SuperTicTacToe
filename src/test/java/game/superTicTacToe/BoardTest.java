@@ -113,4 +113,27 @@ public class BoardTest {
 		assertTrue("Board should be won by AI as it wins quadrants 0, 4 and 8", BoardJ.board.isWonBy(new Character(1)));
 		
 	}
+	
+	/**
+	 * Tests if the JFrame tells who won the game.
+	 */
+	@Test
+	public void testWinNotification(){
+		// AI wins box 0
+		BoardJ.AIMoves(0,0);
+		BoardJ.AIMoves(0,1);
+		BoardJ.AIMoves(0,2);
+		// AI wins box 1
+		BoardJ.AIMoves(1,3);
+		BoardJ.AIMoves(1,4);
+		BoardJ.AIMoves(1,5);
+		// AI wins box 2
+		BoardJ.AIMoves(2,6);
+		BoardJ.AIMoves(2,7);
+		BoardJ.AIMoves(2,8);
+		
+		BoardJ.checkBoard();
+		String text = BoardJ.title.getText();
+		assertTrue("Text on JFrame did not tell who won.", text == "AI won the game!");
+	}
 }
