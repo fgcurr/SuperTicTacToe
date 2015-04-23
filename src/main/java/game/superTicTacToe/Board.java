@@ -111,11 +111,4 @@ public class Board {
 			finished = true;
 		}
 	}
-
-	public String displayMessage(){
-		if(isFinished()){
-			return finalMessage;
-		}
-		else return "";
-	}
 }
