@@ -58,7 +58,6 @@ public class Quadrant extends Entity{
 			JButton cb = (JButton) b;
 			cb.setEnabled(true);
 		}
-		setOutline(Color.black);
 	}
 	
 	public void setOutline(Color color){
