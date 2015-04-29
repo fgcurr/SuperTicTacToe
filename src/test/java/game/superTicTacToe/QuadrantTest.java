@@ -1,7 +1,10 @@
 package test.java.game.superTicTacToe;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
+import java.awt.Color;
 import java.util.Random;
+
+import javax.swing.border.LineBorder;
 
 import main.java.game.gui.BoardJFrame;
 import main.java.game.superTicTacToe.Box;
@@ -74,5 +77,16 @@ public class QuadrantTest {
 			}
 		}
 		assertTrue("findQuadrant must return the quadrant the move was placed on...", found);
+	}
+	
+	/**
+	 * Tests if the player next quadrant to play is outlined
+	 */
+	@Test
+	public void testOutlined(){
+		BoardJFrame boardJ = new BoardJFrame();
+		boardJ.AIMoves(0, 0);
+		Color color = ((LineBorder)boardJ.boardQuads[0].quadrant.getBorder()).getLineColor();
+		assertTrue("Not outlined.", Color.GREEN.equals(color));
 	}
 }

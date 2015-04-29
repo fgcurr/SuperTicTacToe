@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 import main.java.game.superTicTacToe.AI;
 import main.java.game.superTicTacToe.Board;
@@ -116,6 +117,9 @@ public class BoardJFrame extends javax.swing.JFrame {
     	content.add(title);
     	content.add(exitButton);
     	
+    	for(int i = 0; i < 9; i++){
+			boardQuads[i].setOutline(Color.BLACK);
+		}
     	firstMove();
     }
     
@@ -182,6 +186,11 @@ public class BoardJFrame extends javax.swing.JFrame {
 		
 		// Checks if the AI won the game with current move.
 		checkBoard();
+		
+		// Show where player makes next move
+		if(!boardTictactoes[activequad].isOver()){
+			boardQuads[activequad].setOutline(Color.GREEN);
+		}
     }
     
     public int firstMove(){
@@ -194,6 +203,7 @@ public class BoardJFrame extends javax.swing.JFrame {
     		AIMoves(rndm.nextInt(9), aimove);
     		activequad = aimove;
     		disableQuadrants();
+			boardQuads[activequad].setOutline(Color.GREEN);
     	}
     	return move;
     }
@@ -286,6 +296,14 @@ class BoxHandler implements ActionListener
 			frame.dispose();
 			main(null);
 			return;
+		}
+		
+		// Makes the outline of all other quadrants black
+		for(int i = 0; i < 9; i++){
+			Color color = ((LineBorder)boardQuads[i].quadrant.getBorder()).getLineColor();
+			if(!Color.RED.equals(color) && !Color.BLUE.equals(color)){
+				boardQuads[i].setOutline(Color.BLACK);
+			}
 		}
 		
 		// If button is already played then return
