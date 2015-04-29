@@ -8,7 +8,9 @@ import javax.swing.border.LineBorder;
 
 import main.java.game.gui.BoardJFrame;
 import main.java.game.superTicTacToe.Box;
+import main.java.game.superTicTacToe.Character;
 import main.java.game.superTicTacToe.Quadrant;
+import main.java.game.superTicTacToe.TicTacToe;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -88,5 +90,27 @@ public class QuadrantTest {
 		boardJ.AIMoves(0, 0);
 		Color color = ((LineBorder)boardJ.boardQuads[0].quadrant.getBorder()).getLineColor();
 		assertTrue("Not outlined.", Color.GREEN.equals(color));
+	}
+	
+	/**
+	 * Testing checkAndDisable by forcing a draw on a tictactoe (not possible in the real game)
+	 */
+	@Test
+	public void testCheckAndDisable() {
+		BoardJFrame BoardJ = new BoardJFrame();
+		TicTacToe t = BoardJ.boardQuads[0].tictactoe;
+		t.boxes[0].set(new Character(1));
+		t.boxes[1].set(new Character(1));
+		t.boxes[2].set(new Character(2));
+		t.boxes[3].set(new Character(2));
+		t.boxes[4].set(new Character(2));
+		t.boxes[5].set(new Character(1));
+		t.boxes[6].set(new Character(1));
+		t.boxes[7].set(new Character(2));
+		t.boxes[8].set(new Character(1));
+		
+		BoardJ.checkAndDisable(BoardJ.boardQuads[0], t);
+		Color color = ((LineBorder)BoardJ.boardQuads[0].quadrant.getBorder()).getLineColor();
+		assertTrue("Border should be grayed out", Color.GRAY.equals(color));
 	}
 }

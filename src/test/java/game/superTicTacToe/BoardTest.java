@@ -4,10 +4,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-import java.util.Scanner;
-
 import main.java.game.gui.BoardJFrame;
-import main.java.game.superTicTacToe.AI;
 import main.java.game.superTicTacToe.Character;
 import main.java.game.superTicTacToe.Board;
 
