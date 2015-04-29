@@ -188,8 +188,8 @@ public class BoardJFrame extends javax.swing.JFrame {
 		checkBoard();
 		
 		// Show where player makes next move
-		if(!boardTictactoes[activequad].isOver()){
-			boardQuads[activequad].setOutline(Color.GREEN);
+		if(!boardTictactoes[box].isOver()){
+			boardQuads[box].setOutline(Color.GREEN);
 		}
     }
     
