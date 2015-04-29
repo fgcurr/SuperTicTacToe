@@ -95,7 +95,7 @@ public class BoardTest {
 	}
 	
 	/**
-	 * Testing if Board is indeed won by a player
+	 * Testing if Board is won or draw by a player
 	 */
 	
 	@Test(timeout=10000)
@@ -119,7 +119,7 @@ public class BoardTest {
 				stuckcount++;
 				if (stuckcount > 300) {
 					System.out.println("SYSTEM STUCK");
-					assertTrue("System stuck to a draw, please restart test", false);
+					assertTrue("Game should be drawed", stuckcount > 300);
 				}
 			}
 			ai.callMiniMax(0, 1);
