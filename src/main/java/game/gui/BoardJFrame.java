@@ -18,6 +18,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import org.junit.Ignore;
+
 import main.java.game.superTicTacToe.AI;
 import main.java.game.superTicTacToe.Board;
 import main.java.game.superTicTacToe.Box;
@@ -244,6 +246,7 @@ public class BoardJFrame extends javax.swing.JFrame {
     	return false;
     }
 
+    @Ignore("Main method")
     /**
      * @param args the command line arguments
      */
