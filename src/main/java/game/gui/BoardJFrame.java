@@ -267,7 +267,6 @@ public class BoardJFrame extends javax.swing.JFrame {
     	
     	frame = new BoardJFrame();
     	frame.setVisible(true);
-    	frame.setResizable(false);
     }
 
 class BoxHandler implements ActionListener

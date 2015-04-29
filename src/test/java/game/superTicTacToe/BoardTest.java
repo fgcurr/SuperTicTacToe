@@ -95,7 +95,7 @@ public class BoardTest {
 	}
 	
 	/**
-	 * Testing if Board is won or draw by a player
+	 * Testing if Board is indeed won by the player
 	 */
 	
 	@Test(timeout=10000)
@@ -109,38 +109,22 @@ public class BoardTest {
 		int quad = randomQuad.nextInt(9);
 		int box = randomBox.nextInt(9);
 		BoardJ.boxes[quad][box].doClick();
-		AI ai;
-		int stuckcount = 0;
 		while (!BoardJ.board.isFinished()) {
-			ai = new AI(BoardJ.boardTictactoes[box]);
 			while(BoardJ.boardTictactoes[box].isOver()){
 				box = new Random().nextInt(9);
-				ai = new AI(BoardJ.boardTictactoes[box]);
-				stuckcount++;
-				if (stuckcount > 300) {
-					System.out.println("SYSTEM STUCK");
-					assertTrue("Game should be drawed", stuckcount > 300);
-				}
 			}
-			ai.callMiniMax(0, 1);
-			int aimove = 0;
-			aimove = ai.returnBestMove();
-			System.out.println("Clicking " + "[" + box + "," + aimove + "]");
-			BoardJ.boxes[box][aimove].doClick();
+
+			BoardJ.AIMoves(box, randomBox.nextInt(9));
 			box = BoardJ.activequad;
 			try {
-				Thread.sleep(5);
+				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
 		
 		if (BoardJ.board.isWonBy(new Character(1)))
-			assertTrue("Board should be won by AI or player", BoardJ.board.isWonBy(new Character(1)));
-		else if (BoardJ.board.isWonBy(new Character(2)))
-			assertTrue("Board should be won by AI or player", BoardJ.board.isWonBy(new Character(2)));
-		
-		
+			assertTrue("Board should be won by AI", BoardJ.board.isWonBy(new Character(1)));	
 	}
 	
 	/**
