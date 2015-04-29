@@ -34,6 +34,10 @@ public class MoveTest {
 	@Test
 	public void testGetMove() {
 		BoardJFrame boardJ = new BoardJFrame();
+		if (!boardJ.boxes[0][0].getText().isEmpty()) {
+			boardJ.boxes[0][0].setText("0");
+			boardJ.boardBoxes[0][0].unSet();
+		}
 		boardJ.boardQuads[0].quadrant.getComponent(0).setEnabled(true);
 		boardJ.boxes[0][0].doClick();
 
